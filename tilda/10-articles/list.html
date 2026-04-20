@@ -1,0 +1,253 @@
+<!--
+  Хаб статей (articles list).
+  В Tilda:
+    • Вставьте весь этот фрагмент в блок T123 на странице /articles/.
+    • Карточки внутри .eo-articles__grid можно либо писать вручную,
+      либо заменить/дополнить встроенным блоком «Поток» (Feed) Tilda —
+      см. корневой README.md раздел «Блог и статьи».
+-->
+<section class="eo-section eo-articles" id="articles">
+  <div class="eo-wrap">
+    <header class="eo-articles__head eo-reveal">
+      <span class="eo-articles__eyebrow">Блог</span>
+      <h1 class="eo-articles__title">Статьи и новости</h1>
+      <p class="eo-articles__lead">
+        Материалы о сапропеле, агрономии и применении органических удобрений.
+        Обновляется регулярно — следите за публикациями.
+      </p>
+    </header>
+
+    <nav class="eo-articles__filters eo-reveal" aria-label="Категории статей">
+      <a href="?cat=all" class="eo-articles__chip eo-articles__chip--active" data-cat="all">Все</a>
+      <a href="?cat=agro" class="eo-articles__chip" data-cat="agro">Агрономия</a>
+      <a href="?cat=science" class="eo-articles__chip" data-cat="science">Наука</a>
+      <a href="?cat=cases" class="eo-articles__chip" data-cat="cases">Практика</a>
+      <a href="?cat=news" class="eo-articles__chip" data-cat="news">Новости</a>
+    </nav>
+
+    <!--
+      Начало сетки карточек. Каждая статья — элемент <article>.
+      Для SEO используем schema.org BlogPosting через itemscope/itemprop.
+      Ссылка ведёт на /articles/{slug}/ — создайте такую страницу в Tilda
+      с блоком, содержащим article.html из 10-articles/.
+    -->
+    <ul class="eo-articles__grid" id="eoArticlesGrid">
+      <li class="eo-reveal">
+        <article class="eo-art-card" itemscope itemtype="https://schema.org/BlogPosting" data-cat="science">
+          <a href="/articles/sapropel-sostav-i-svoistva/" class="eo-art-card__link" itemprop="url">
+            <div class="eo-art-card__cover">
+              <img src="https://static.tildacdn.com/tild6132-6638-4332-b234-616264313264/IMG_5356.png" alt="Состав сапропеля" loading="lazy" itemprop="image">
+              <span class="eo-art-card__cat">Наука</span>
+            </div>
+            <div class="eo-art-card__body">
+              <div class="eo-art-card__meta">
+                <time datetime="2025-03-18" itemprop="datePublished">18 марта 2025</time>
+                <span class="eo-art-card__dot" aria-hidden="true"></span>
+                <span>8 мин</span>
+              </div>
+              <h2 class="eo-art-card__title" itemprop="headline">
+                Состав и свойства сапропеля: что делает его универсальным удобрением
+              </h2>
+              <p class="eo-art-card__excerpt" itemprop="description">
+                Разбираем минеральный состав донных отложений, роль гуминовых кислот
+                и почему сапропель работает одновременно как удобрение и как мелиорант.
+              </p>
+              <span class="eo-art-card__more">
+                Читать далее
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </div>
+          </a>
+        </article>
+      </li>
+
+      <li class="eo-reveal" style="--eo-delay: 80ms">
+        <article class="eo-art-card" itemscope itemtype="https://schema.org/BlogPosting" data-cat="agro">
+          <a href="/articles/primenenie-v-ogorode/" class="eo-art-card__link" itemprop="url">
+            <div class="eo-art-card__cover">
+              <img src="https://static.tildacdn.com/tild6132-6638-4332-b234-616264313264/IMG_5356.png" alt="Применение в огороде" loading="lazy" itemprop="image">
+              <span class="eo-art-card__cat">Агрономия</span>
+            </div>
+            <div class="eo-art-card__body">
+              <div class="eo-art-card__meta">
+                <time datetime="2025-03-05" itemprop="datePublished">5 марта 2025</time>
+                <span class="eo-art-card__dot" aria-hidden="true"></span>
+                <span>6 мин</span>
+              </div>
+              <h2 class="eo-art-card__title" itemprop="headline">
+                Как правильно вносить сапропель в огород весной
+              </h2>
+              <p class="eo-art-card__excerpt" itemprop="description">
+                Нормы внесения, сроки и совместимость с другими удобрениями.
+                Пошаговая инструкция для дачников и фермерских хозяйств.
+              </p>
+              <span class="eo-art-card__more">
+                Читать далее
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </div>
+          </a>
+        </article>
+      </li>
+
+      <li class="eo-reveal" style="--eo-delay: 160ms">
+        <article class="eo-art-card" itemscope itemtype="https://schema.org/BlogPosting" data-cat="cases">
+          <a href="/articles/keis-urozhainost-kartofelya/" class="eo-art-card__link" itemprop="url">
+            <div class="eo-art-card__cover">
+              <img src="https://static.tildacdn.com/tild6132-6638-4332-b234-616264313264/IMG_5356.png" alt="Кейс: урожайность картофеля" loading="lazy" itemprop="image">
+              <span class="eo-art-card__cat">Практика</span>
+            </div>
+            <div class="eo-art-card__body">
+              <div class="eo-art-card__meta">
+                <time datetime="2025-02-20" itemprop="datePublished">20 февраля 2025</time>
+                <span class="eo-art-card__dot" aria-hidden="true"></span>
+                <span>5 мин</span>
+              </div>
+              <h2 class="eo-art-card__title" itemprop="headline">
+                Кейс: +32% к урожаю картофеля на истощённых почвах Новосибирской области
+              </h2>
+              <p class="eo-art-card__excerpt" itemprop="description">
+                Полевой эксперимент сезона 2024 года: сравниваем контрольный участок
+                и участок с внесением сапропеля из Минзелинского месторождения.
+              </p>
+              <span class="eo-art-card__more">
+                Читать далее
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </div>
+          </a>
+        </article>
+      </li>
+
+      <li class="eo-reveal">
+        <article class="eo-art-card" itemscope itemtype="https://schema.org/BlogPosting" data-cat="agro">
+          <a href="/articles/sapropel-dlya-teplits/" class="eo-art-card__link" itemprop="url">
+            <div class="eo-art-card__cover">
+              <img src="https://static.tildacdn.com/tild6132-6638-4332-b234-616264313264/IMG_5356.png" alt="Сапропель для теплиц" loading="lazy" itemprop="image">
+              <span class="eo-art-card__cat">Агрономия</span>
+            </div>
+            <div class="eo-art-card__body">
+              <div class="eo-art-card__meta">
+                <time datetime="2025-02-08" itemprop="datePublished">8 февраля 2025</time>
+                <span class="eo-art-card__dot" aria-hidden="true"></span>
+                <span>7 мин</span>
+              </div>
+              <h2 class="eo-art-card__title" itemprop="headline">
+                Сапропель в тепличном хозяйстве: повышаем урожайность томатов и огурцов
+              </h2>
+              <p class="eo-art-card__excerpt" itemprop="description">
+                Особенности использования сапропеля в закрытом грунте, схемы подкормок
+                и влияние на качество плодов.
+              </p>
+              <span class="eo-art-card__more">
+                Читать далее
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </div>
+          </a>
+        </article>
+      </li>
+
+      <li class="eo-reveal" style="--eo-delay: 80ms">
+        <article class="eo-art-card" itemscope itemtype="https://schema.org/BlogPosting" data-cat="science">
+          <a href="/articles/guminovye-kisloty/" class="eo-art-card__link" itemprop="url">
+            <div class="eo-art-card__cover">
+              <img src="https://static.tildacdn.com/tild6132-6638-4332-b234-616264313264/IMG_5356.png" alt="Гуминовые кислоты" loading="lazy" itemprop="image">
+              <span class="eo-art-card__cat">Наука</span>
+            </div>
+            <div class="eo-art-card__body">
+              <div class="eo-art-card__meta">
+                <time datetime="2025-01-24" itemprop="datePublished">24 января 2025</time>
+                <span class="eo-art-card__dot" aria-hidden="true"></span>
+                <span>10 мин</span>
+              </div>
+              <h2 class="eo-art-card__title" itemprop="headline">
+                Роль гуминовых кислот в плодородии почв
+              </h2>
+              <p class="eo-art-card__excerpt" itemprop="description">
+                Биохимия гуминовых соединений, механизмы связывания микроэлементов
+                и почему именно сапропель — один из самых богатых природных источников.
+              </p>
+              <span class="eo-art-card__more">
+                Читать далее
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </div>
+          </a>
+        </article>
+      </li>
+
+      <li class="eo-reveal" style="--eo-delay: 160ms">
+        <article class="eo-art-card" itemscope itemtype="https://schema.org/BlogPosting" data-cat="news">
+          <a href="/articles/novaya-partiya-2025/" class="eo-art-card__link" itemprop="url">
+            <div class="eo-art-card__cover">
+              <img src="https://static.tildacdn.com/tild6132-6638-4332-b234-616264313264/IMG_5356.png" alt="Новая партия 2025" loading="lazy" itemprop="image">
+              <span class="eo-art-card__cat">Новости</span>
+            </div>
+            <div class="eo-art-card__body">
+              <div class="eo-art-card__meta">
+                <time datetime="2025-01-10" itemprop="datePublished">10 января 2025</time>
+                <span class="eo-art-card__dot" aria-hidden="true"></span>
+                <span>3 мин</span>
+              </div>
+              <h2 class="eo-art-card__title" itemprop="headline">
+                Стартовали поставки новой партии сапропеля сезона 2025
+              </h2>
+              <p class="eo-art-card__excerpt" itemprop="description">
+                Продукт прошёл лабораторный контроль и сертификацию. Доступен для заказа
+                в фасовках от 20 до 1000 кг.
+              </p>
+              <span class="eo-art-card__more">
+                Читать далее
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </div>
+          </a>
+        </article>
+      </li>
+    </ul>
+
+    <div class="eo-articles__empty" id="eoArticlesEmpty" hidden>
+      В этой категории пока нет материалов. Загляните позже или выберите «Все».
+    </div>
+  </div>
+
+  <script>
+    // Простой клиентский фильтр по категориям — работает и без Tilda Feeds.
+    // Если используете встроенный модуль Feed — этот скрипт можно удалить.
+    (function () {
+      var chips = document.querySelectorAll('.eo-articles__chip');
+      var grid = document.getElementById('eoArticlesGrid');
+      var empty = document.getElementById('eoArticlesEmpty');
+      if (!chips.length || !grid) return;
+
+      function apply(cat) {
+        var items = grid.querySelectorAll('[data-cat]');
+        var visible = 0;
+        items.forEach(function (el) {
+          var match = cat === 'all' || el.getAttribute('data-cat') === cat;
+          el.closest('li').style.display = match ? '' : 'none';
+          if (match) visible++;
+        });
+        if (empty) empty.hidden = visible > 0;
+      }
+
+      chips.forEach(function (chip) {
+        chip.addEventListener('click', function (e) {
+          e.preventDefault();
+          chips.forEach(function (c) { c.classList.remove('eo-articles__chip--active'); });
+          chip.classList.add('eo-articles__chip--active');
+          apply(chip.getAttribute('data-cat'));
+          history.replaceState(null, '', '?cat=' + chip.getAttribute('data-cat'));
+        });
+      });
+
+      var params = new URLSearchParams(location.search);
+      var initial = params.get('cat');
+      if (initial) {
+        var target = document.querySelector('.eo-articles__chip[data-cat="' + initial + '"]');
+        if (target) target.click();
+      }
+    })();
+  </script>
+</section>
