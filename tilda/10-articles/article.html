@@ -1,0 +1,171 @@
+<!--
+  Шаблон страницы одной статьи.
+  В Tilda:
+    • Вставьте этот фрагмент в блок T123 на странице статьи.
+    • Значения data-* и содержимое заголовка/обложки/даты замените на реальные,
+      либо — если используете модуль «Поток» Tilda — см. README, раздел «Блог и статьи».
+    • JSON-LD блок ниже улучшает SEO-индексацию — не удаляйте.
+-->
+<article class="eo-section eo-article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="eo-wrap">
+
+    <!-- Хлебные крошки (Breadcrumb) — важны для SEO -->
+    <nav class="eo-article__crumbs eo-reveal" aria-label="Хлебные крошки" itemscope itemtype="https://schema.org/BreadcrumbList">
+      <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/" itemprop="item"><span itemprop="name">Главная</span></a>
+        <meta itemprop="position" content="1">
+      </span>
+      <span aria-hidden="true">/</span>
+      <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/articles/" itemprop="item"><span itemprop="name">Статьи</span></a>
+        <meta itemprop="position" content="2">
+      </span>
+      <span aria-hidden="true">/</span>
+      <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+        <span itemprop="name">Состав и свойства сапропеля</span>
+        <meta itemprop="position" content="3">
+      </span>
+    </nav>
+
+    <header class="eo-article__head eo-reveal">
+      <span class="eo-article__cat">Наука</span>
+      <h1 class="eo-article__title" itemprop="headline">
+        Состав и свойства сапропеля: что делает его универсальным удобрением
+      </h1>
+
+      <div class="eo-article__meta">
+        <div class="eo-article__author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <span class="eo-article__avatar" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </span>
+          <span itemprop="name">Редакция «Эко Органика»</span>
+        </div>
+        <span class="eo-article__dot" aria-hidden="true"></span>
+        <time datetime="2025-03-18" itemprop="datePublished">18 марта 2025</time>
+        <span class="eo-article__dot" aria-hidden="true"></span>
+        <span>8 мин чтения</span>
+      </div>
+    </header>
+
+    <figure class="eo-article__cover eo-reveal">
+      <img src="https://static.tildacdn.com/tild6132-6638-4332-b234-616264313264/IMG_5356.png" alt="Сапропель — природное органическое удобрение" itemprop="image">
+    </figure>
+
+    <!--
+      Тело статьи. Разрешённые теги:
+      h2, h3, p, ul, ol, li, blockquote, figure, figcaption, img, a, strong, em, code.
+      Tilda-модуль «Поток» сам подставит разметку — просто пишите в визуальном редакторе.
+    -->
+    <div class="eo-article__body eo-reveal" itemprop="articleBody">
+      <p class="eo-article__lead">
+        Сапропель — уникальное природное сырьё, образующееся на дне пресноводных озёр
+        из остатков растительности, планктона и минеральных частиц. Миллионы лет
+        превращают эту массу в концентрат органики и микроэлементов, полезный
+        для любых типов почв.
+      </p>
+
+      <h2>Что входит в состав сапропеля</h2>
+      <p>
+        В среднем сапропель содержит 60–90% органических веществ. Остальное —
+        минеральная часть: соли кальция, магния, фосфора, микроэлементы.
+        Именно такое соотношение обеспечивает комплексное действие
+        на плодородие почвы.
+      </p>
+
+      <ul>
+        <li><strong>Гуминовые кислоты</strong> — до 45% сухой массы, активируют рост корневой системы.</li>
+        <li><strong>Макроэлементы (N, P, K)</strong> — в биодоступной органической форме.</li>
+        <li><strong>Микроэлементы</strong> — Fe, Mn, Zn, Cu, B, Mo, Co — в хелатных комплексах.</li>
+        <li><strong>Аминокислоты и витамины</strong> — стимулируют почвенную микрофлору.</li>
+      </ul>
+
+      <h2>Почему сапропель работает как мелиорант</h2>
+      <p>
+        В отличие от минеральных удобрений, сапропель улучшает <em>структуру</em> почвы:
+        повышает влагоёмкость, разрыхляет тяжёлые глинистые грунты и связывает
+        лёгкие песчаные. Это значит, что одно внесение работает на несколько сезонов.
+      </p>
+
+      <blockquote>
+        «Сапропель — это не просто удобрение, а комплексный агрохимический
+        инструмент. Его эффект видно не в сезон внесения, а на горизонте 3–5 лет.»
+      </blockquote>
+
+      <h3>Сравнение с торфом и перегноем</h3>
+      <p>
+        По содержанию гуминовых кислот сапропель превосходит верховой торф в 2–3 раза,
+        а по набору микроэлементов — в 5–7 раз. При этом он полностью экологически
+        безопасен и разрешён для применения в органическом земледелии.
+      </p>
+
+      <h2>Как хранить и применять</h2>
+      <p>
+        Рекомендуемые нормы — от 3 до 10 т/га в зависимости от культуры и типа почвы.
+        Подробную инструкцию по внесению читайте в материале
+        <a href="/articles/primenenie-v-ogorode/">«Как правильно вносить сапропель в огород весной»</a>.
+      </p>
+    </div>
+
+    <!-- CTA-блок в конце статьи -->
+    <aside class="eo-article__cta eo-reveal" aria-label="Призыв к действию">
+      <h3>Готовы попробовать сапропель на своём участке?</h3>
+      <p>Напишите нам — подскажем норму внесения и рассчитаем стоимость доставки.</p>
+      <a href="/#contact" class="eo-article__cta-btn">Оставить заявку</a>
+    </aside>
+
+    <!-- Блок «Читайте также». В Tilda модуль «Поток» подставит релевантное автоматически. -->
+    <section class="eo-article__related eo-reveal" aria-label="Читайте также">
+      <h3 class="eo-article__related-title">Читайте также</h3>
+      <ul class="eo-article__related-list">
+        <li>
+          <a href="/articles/primenenie-v-ogorode/" class="eo-article__related-item">
+            <span class="eo-article__related-cat">Агрономия</span>
+            <span class="eo-article__related-headline">Как правильно вносить сапропель в огород весной</span>
+          </a>
+        </li>
+        <li>
+          <a href="/articles/guminovye-kisloty/" class="eo-article__related-item">
+            <span class="eo-article__related-cat">Наука</span>
+            <span class="eo-article__related-headline">Роль гуминовых кислот в плодородии почв</span>
+          </a>
+        </li>
+        <li>
+          <a href="/articles/keis-urozhainost-kartofelya/" class="eo-article__related-item">
+            <span class="eo-article__related-cat">Практика</span>
+            <span class="eo-article__related-headline">Кейс: +32% к урожаю картофеля на истощённых почвах</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+  </div>
+
+  <!--
+    JSON-LD schema.org разметка для Google/Яндекс.
+    В Tilda: при использовании модуля «Поток» подставляйте реальные значения
+    через переменные потока (см. README, раздел «Блог и статьи»).
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Состав и свойства сапропеля: что делает его универсальным удобрением",
+    "description": "Разбираем минеральный состав донных отложений, роль гуминовых кислот и почему сапропель работает одновременно как удобрение и как мелиорант.",
+    "image": "https://static.tildacdn.com/tild6132-6638-4332-b234-616264313264/IMG_5356.png",
+    "datePublished": "2025-03-18",
+    "dateModified": "2025-03-18",
+    "author": {
+      "@type": "Organization",
+      "name": "Эко Органика"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Эко Органика"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "/articles/sapropel-sostav-i-svoistva/"
+    }
+  }
+  </script>
+</article>
