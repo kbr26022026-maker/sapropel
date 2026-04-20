@@ -1,0 +1,236 @@
+:where(.eo-resources__grid) {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 56px;
+}
+@media (min-width: 960px) {
+  :where(.eo-resources__grid) { grid-template-columns: 1fr 1fr; gap: 64px; }
+}
+:where(.eo-resources__head) {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+:where(.eo-resources__head h2) {
+  color: var(--eo-text);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  margin: 0;
+}
+:where(.eo-resources__badge) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+}
+:where(.eo-resources__badge--amber) { background: var(--eo-amber-soft); color: var(--eo-amber); }
+:where(.eo-resources__badge--blue)  { background: var(--eo-blue-soft); color: var(--eo-blue); }
+
+:where(.eo-resources__list) {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+:where(.eo-res-card) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 24px;
+  border-radius: var(--eo-radius-md);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--eo-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--eo-text);
+  box-shadow: 0 6px 20px rgba(69, 69, 69, 0.05);
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+:where(.eo-res-card:hover) {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(69, 69, 69, 0.10);
+}
+:where(.eo-res-card--article:hover) { border-color: rgba(0, 66, 37, 0.55); }
+:where(.eo-res-card--article:hover h3) { color: var(--eo-accent-deep); }
+:where(.eo-res-card--article:hover svg) { color: var(--eo-accent-deep); }
+
+:where(.eo-res-card--doc:hover) { border-color: rgba(69, 69, 69, 0.55); }
+:where(.eo-res-card--doc:hover h3) { color: var(--eo-blue); }
+:where(.eo-res-card--doc:hover svg) { color: var(--eo-blue); }
+
+:where(.eo-res-card__source) {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--eo-accent-deep);
+  margin-bottom: 8px;
+}
+:where(.eo-res-card h3) {
+  color: var(--eo-text);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0;
+  transition: color 0.2s;
+}
+:where(.eo-res-card--doc h3) { color: var(--eo-text); font-weight: 500; font-size: 16px; }
+:where(.eo-res-card svg) { color: var(--eo-text-dim); flex-shrink: 0; transition: color 0.2s; }
+
+/* ===== Модальное окно предпросмотра документов ===== */
+:where(.eo-doc-modal) {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(12px, 3vw, 40px);
+  font-family: var(--eo-font);
+}
+:where(.eo-doc-modal.eo-doc-modal--open) { display: flex; }
+:where(.eo-doc-modal__backdrop) {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 24, 30, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: eoDocFade 0.25s var(--eo-ease);
+}
+:where(.eo-doc-modal__dialog) {
+  position: relative;
+  z-index: 1;
+  width: min(1100px, 100%);
+  height: min(90vh, 900px);
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: var(--eo-radius-md);
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.35);
+  overflow: hidden;
+  animation: eoDocPop 0.3s var(--eo-ease);
+}
+:where(.eo-doc-modal__head) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--eo-border);
+  background: #fff;
+  flex-shrink: 0;
+}
+:where(.eo-doc-modal__title) {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--eo-text);
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+:where(.eo-doc-modal__actions) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+:where(.eo-doc-modal__btn) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--eo-border);
+  background: #fff;
+  color: var(--eo-text);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+:where(.eo-doc-modal__btn:hover) {
+  background: var(--eo-bg);
+  border-color: var(--eo-border-strong);
+  color: var(--eo-accent-deep);
+}
+:where(.eo-doc-modal__btn--close) { padding: 8px; }
+:where(.eo-doc-modal__btn--primary) {
+  background: var(--eo-accent);
+  border-color: var(--eo-accent);
+  color: #fff;
+}
+:where(.eo-doc-modal__btn--primary:hover) {
+  background: var(--eo-accent-hover);
+  border-color: var(--eo-accent-hover);
+  color: #fff;
+}
+@media (max-width: 560px) {
+  :where(.eo-doc-modal__btn--open span) { display: none; }
+  :where(.eo-doc-modal__btn--open) { padding: 8px; }
+}
+:where(.eo-doc-modal__body) {
+  position: relative;
+  flex: 1 1 auto;
+  overflow: auto;
+  background: #f1f4f8;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+:where(.eo-doc-modal__body iframe) {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  background: #fff;
+}
+:where(.eo-doc-modal__body img) {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  display: block;
+  object-fit: contain;
+  background: #fff;
+}
+:where(.eo-doc-modal__body-loader) {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--eo-text-dim);
+  font-size: 14px;
+}
+:where(.eo-doc-modal__fallback) {
+  padding: 24px;
+  text-align: center;
+  background: #fff;
+  border-top: 1px solid var(--eo-border);
+}
+:where(.eo-doc-modal__fallback p) {
+  margin: 0 0 14px;
+  color: var(--eo-text-muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+:where(.eo-doc-modal__fallback[hidden]) { display: none; }
+body.eo-doc-modal-lock { overflow: hidden; }
+
+@keyframes eoDocFade { from { opacity: 0 } to { opacity: 1 } }
+@keyframes eoDocPop {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}

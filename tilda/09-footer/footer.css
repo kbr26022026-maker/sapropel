@@ -1,0 +1,96 @@
+:where(.eo-footer) {
+  position: relative;
+  z-index: 2;
+  padding: 48px 0;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--eo-border);
+  color: var(--eo-text-muted);
+  font-family: var(--eo-font);
+}
+:where(.eo-footer__inner) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+@media (min-width: 760px) {
+  :where(.eo-footer__inner) { flex-direction: row; justify-content: space-between; text-align: left; }
+}
+:where(.eo-footer__brand) {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--eo-accent-hover);
+  text-decoration: none;
+}
+:where(.eo-footer__brand span) {
+  color: var(--eo-text);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+:where(.eo-footer__copy) {
+  font-size: 14px;
+  line-height: 1.5;
+}
+:where(.eo-footer__copy p) { margin: 0; }
+:where(.eo-footer__copy p + p) { margin-top: 4px; }
+:where(.eo-footer__actions) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+:where(.eo-footer__ozon) {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  text-decoration: none;
+}
+:where(.eo-footer__ozon-badge) {
+  display: block;
+  width: 188px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.16);
+  transition: transform 0.25s var(--eo-ease), box-shadow 0.25s var(--eo-ease);
+}
+:where(.eo-footer__ozon:hover .eo-footer__ozon-badge) {
+  transform: translateY(-3px) scale(1.025);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+}
+:where(.eo-footer__ozon-sub) {
+  font-size: 12px;
+  color: var(--eo-text-muted);
+  font-family: var(--eo-font);
+  letter-spacing: 0.01em;
+}
+:where(.eo-footer__link) {
+  font-size: 14px;
+  color: var(--eo-text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+:where(.eo-footer__link:hover) { color: var(--eo-accent-hover); }
+
+@media (min-width: 760px) {
+  :where(.eo-footer__actions) {
+    align-items: flex-end;
+  }
+}
+
+@media (max-width: 759px) {
+  :where(.eo-footer) {
+    padding-bottom: 36px;
+  }
+  :where(.eo-footer__ozon) {
+    align-items: center;
+  }
+  :where(.eo-footer__ozon-badge) {
+    width: 164px;
+  }
+}

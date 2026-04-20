@@ -1,0 +1,92 @@
+<!-- === Эко Органика: глобальные стили. Вставить в Настройки сайта → HEAD === -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --eo-bg: #f6f8fb;
+    --eo-bg-2: #ffffff;
+    --eo-surface: rgba(255, 255, 255, 0.55);
+    --eo-surface-2: rgba(255, 255, 255, 0.75);
+    --eo-border: rgba(15, 23, 42, 0.08);
+    --eo-border-strong: rgba(15, 23, 42, 0.16);
+    --eo-text: #0f172a;
+    --eo-text-muted: #475569;
+    --eo-text-dim: #64748b;
+    --eo-white: #ffffff;
+
+    --eo-accent: #10b981;          /* emerald-500 */
+    --eo-accent-hover: #059669;    /* emerald-600 */
+    --eo-accent-deep: #047857;     /* emerald-700 для текста на светлом */
+    --eo-accent-soft: rgba(16, 185, 129, 0.14);
+    --eo-amber: #d97706;
+    --eo-amber-soft: rgba(217, 119, 6, 0.15);
+    --eo-blue: #2563eb;
+    --eo-blue-soft: rgba(37, 99, 235, 0.14);
+
+    --eo-radius-sm: 12px;
+    --eo-radius-md: 20px;
+    --eo-radius-lg: 32px;
+    --eo-radius-xl: 48px;
+
+    --eo-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    --eo-shadow-accent: 0 10px 30px rgba(16, 185, 129, 0.22);
+
+    --eo-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --eo-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    --eo-container: min(1200px, 100% - 2rem);
+  }
+
+  /* Общий контейнер секций — низкая специфичность, не конфликтует с Tilda */
+  :where(.eo-section) {
+    position: relative;
+    z-index: 2;
+    padding: clamp(56px, 8vw, 96px) 0;
+    font-family: var(--eo-font);
+    color: var(--eo-text);
+  }
+  :where(.eo-wrap) {
+    width: var(--eo-container);
+    margin-inline: auto;
+  }
+
+  :where(.eo-section *) {
+    box-sizing: border-box;
+  }
+
+  /* Универсальный reveal-эффект: элемент появляется при скролле */
+  :where(.eo-reveal) {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s var(--eo-ease), transform 0.8s var(--eo-ease);
+    transition-delay: var(--eo-delay, 0ms);
+  }
+  :where(.eo-reveal.eo-in) {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where(.eo-reveal) { opacity: 1; transform: none; transition: none; }
+    :where(.eo-section *) { animation: none !important; }
+  }
+
+  /* Базовые стили тегов внутри секций, чтобы Tilda не подменяла */
+  :where(.eo-section h1, .eo-section h2, .eo-section h3, .eo-section h4, .eo-section p, .eo-section a, .eo-section span, .eo-section li, .eo-section button, .eo-section label, .eo-section input, .eo-section textarea) {
+    font-family: var(--eo-font);
+  }
+  :where(.eo-section a) {
+    color: inherit;
+    text-decoration: none;
+  }
+  :where(.eo-section img) {
+    max-width: 100%;
+    display: block;
+  }
+  :where(.eo-section ::selection) {
+    background: rgba(16, 185, 129, 0.25);
+    color: #0f172a;
+  }
+</style>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preview — Эко Органика (для Tilda)</title>
+
+  <!-- === Содержимое _global/head.html === -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --eo-bg: #f6f8fb; --eo-bg-2: #ffffff;
+      --eo-surface: rgba(255,255,255,0.55); --eo-surface-2: rgba(255,255,255,0.75);
+      --eo-border: rgba(15,23,42,0.08); --eo-border-strong: rgba(15,23,42,0.16);
+      --eo-text: #0f172a; --eo-text-muted: #475569; --eo-text-dim: #64748b; --eo-white: #fff;
+      --eo-accent: #10b981; --eo-accent-hover: #059669; --eo-accent-deep: #047857; --eo-accent-soft: rgba(16,185,129,0.14);
+      --eo-amber: #d97706; --eo-amber-soft: rgba(217,119,6,0.15);
+      --eo-blue: #2563eb; --eo-blue-soft: rgba(37,99,235,0.14);
+      --eo-radius-sm: 12px; --eo-radius-md: 20px; --eo-radius-lg: 32px; --eo-radius-xl: 48px;
+      --eo-shadow: 0 10px 30px rgba(15,23,42,0.08); --eo-shadow-accent: 0 10px 30px rgba(16,185,129,0.22);
+      --eo-ease: cubic-bezier(0.22,1,0.36,1);
+      --eo-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --eo-container: min(1200px, 100% - 2rem);
+    }
+    :where(.eo-section) { position: relative; z-index: 2; padding: clamp(56px,8vw,96px) 0; font-family: var(--eo-font); color: var(--eo-text); }
+    :where(.eo-wrap) { width: var(--eo-container); margin-inline: auto; }
+    :where(.eo-section *) { box-sizing: border-box; }
+    :where(.eo-reveal) { opacity: 0; transform: translateY(28px); transition: opacity .8s var(--eo-ease), transform .8s var(--eo-ease); transition-delay: var(--eo-delay,0ms); }
+    :where(.eo-reveal.eo-in) { opacity: 1; transform: none; }
+    :where(.eo-section h1,.eo-section h2,.eo-section h3,.eo-section h4,.eo-section p,.eo-section a,.eo-section span,.eo-section li,.eo-section button,.eo-section label,.eo-section input,.eo-section textarea) { font-family: var(--eo-font); }
+    :where(.eo-section a) { color: inherit; text-decoration: none; }
+    :where(.eo-section img) { max-width: 100%; display: block; }25); color: #0f172a; }
+    body { margin: 0; background: var(--eo-bg); font-family: var(--eo-font); color: var(--eo-texolor: #fff; }
+    body { margin: 0; background: var(--eo-bg); font-family: var(--eo-font); }
+  </style>
+
+  <link rel="stylesheet" href="_background/background.css">
+  <link rel="stylesheet" href="01-navbar/navbar.css">
+  <link rel="stylesheet" href="02-hero/hero.css">
+  <link rel="stylesheet" href="03-features/features.css">
+  <link rel="stylesheet" href="04-about/about.css">
+  <link rel="stylesheet" href="05-applications/applications.css">
+  <link rel="stylesheet" href="06-videos/videos.css">
+  <link rel="stylesheet" href="07-resources/resources.css">
+  <link rel="stylesheet" href="08-contact/contact.css">
+  <link rel="stylesheet" href="09-footer/footer.css">
+</head>
+<body>
+
+  <div id="bg"></div>
+  <div id="nav"></div>
+  <div id="hero"></div>
+  <div id="features"></div>
+  <div id="about"></div>
+  <div id="apps"></div>
+  <div id="videos"></div>
+  <div id="resources"></div>
+  <div id="contact"></div>
+  <div id="footer"></div>
+
+  <script>
+    // Вставляем HTML-фрагменты
+    const map = {
+      bg: '_background/background.html',
+      nav: '01-navbar/navbar.html',
+      hero: '02-hero/hero.html',
+      features: '03-features/features.html',
+      about: '04-about/about.html',
+      apps: '05-applications/applications.html',
+      videos: '06-videos/videos.html',
+      resources: '07-resources/resources.html',
+      contact: '08-contact/contact.html',
+      footer: '09-footer/footer.html'
+    };
+    Promise.all(Object.entries(map).map(([id, url]) =>
+      fetch(url).then(r => r.text()).then(html => { document.getElementById(id).innerHTML = html; })
+    )).then(() => {
+      // Подгружаем JS секций после вставки HTML
+      ['01-navbar/navbar.js', '07-resources/resources.js', '08-contact/contact.js'].forEach(src => {
+        const s = document.createElement('script'); s.src = src; document.body.appendChild(s);
+      });
+      // Глобальный reveal
+      const gs = document.createElement('script'); gs.src = '_global/global.js'; document.body.appendChild(gs);
+    });
+  </script>
+</body>
+</html>

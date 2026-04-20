@@ -1,0 +1,99 @@
+:where(.eo-about__intro) {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 64px;
+  align-items: center;
+  margin-bottom: 120px;
+}
+@media (min-width: 960px) {
+  :where(.eo-about__intro) { grid-template-columns: 1fr 1fr; gap: 80px; }
+}
+:where(.eo-about__text h2) {
+  color: var(--eo-text);
+  font-size: clamp(28px, 3.6vw, 40px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 24px;
+}
+:where(.eo-about__text p) {
+  color: var(--eo-text-muted);
+  font-size: 18px;
+  line-height: 1.7;
+  margin: 0 0 20px;
+}
+:where(.eo-about__text strong) { color: var(--eo-text); }
+
+:where(.eo-about__gallery) {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+:where(.eo-about__gallery img) {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--eo-radius-lg);
+  box-shadow: 0 20px 50px rgba(69, 69, 69, 0.12);
+}
+:where(.eo-about__img--offset) { margin-top: 32px; }
+:where(.eo-about__img--offset-up) { margin-top: -32px; }
+
+:where(.eo-about__lake) {
+  position: relative;
+  padding: clamp(32px, 5vw, 64px);
+  border-radius: var(--eo-radius-xl);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--eo-border);
+  box-shadow: 0 30px 80px rgba(69, 69, 69, 0.10);
+  overflow: hidden;
+}
+:where(.eo-about__lake-decor) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: rgba(0, 66, 37, 0.08);
+  transform: skewX(-12deg) translateX(80px);
+  pointer-events: none;
+}
+:where(.eo-about__lake-grid) {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+}
+@media (min-width: 960px) {
+  :where(.eo-about__lake-grid) { grid-template-columns: 7fr 5fr; }
+}
+:where(.eo-about__region) {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--eo-accent-deep);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+:where(.eo-about__lake-text h3) {
+  color: var(--eo-text);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 24px;
+}
+:where(.eo-about__lake-text p) {
+  color: var(--eo-text-muted);
+  line-height: 1.65;
+  margin: 0 0 16px;
+}
+:where(.eo-about__lake-text strong) { color: var(--eo-text); }
+:where(.eo-about__lake-img img) {
+  width: 100%;
+  border-radius: var(--eo-radius-md);
+  border: 4px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 20px 50px rgba(69, 69, 69, 0.15);
+}
