@@ -1,12 +1,12 @@
 {
-  "version": 2,
-  "builds": [
-    { "src": "tilda/**/*", "use": "@vercel/static" }
-  ],
-  "routes": [
-    { "src": "/", "dest": "/tilda/preview.html" },
-    { "src": "/articles/?", "dest": "/tilda/preview-articles.html" },
-    { "src": "/articles/([^/]+)/?", "dest": "/tilda/preview-article.html" },
-    { "src": "/(.*)", "dest": "/tilda/$1" }
+  "outputDirectory": "tilda",
+  "rewrites": [
+    { "source": "/", "destination": "/preview.html" },
+    { "source": "/articles", "destination": "/preview-articles.html" },
+    { "source": "/articles/", "destination": "/preview-articles.html" },
+    { "source": "/articles/:slug", "destination": "/preview-article.html" },
+    { "source": "/articles/:slug/", "destination": "/preview-article.html" },
+    { "source": "/privacy-policy", "destination": "/documents/privacy-policy.html" },
+    { "source": "/privacy-policy/", "destination": "/documents/privacy-policy.html" }
   ]
 }
