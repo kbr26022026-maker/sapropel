@@ -36,6 +36,7 @@
 }
 :where(.eo-hero__content) {
   max-width: 880px;
+  width: 100%;
   position: relative;
   padding: clamp(32px, 5vw, 56px) clamp(24px, 4vw, 48px);
   border-radius: var(--eo-radius-xl);
@@ -66,7 +67,7 @@
 
 :where(.eo-hero__title) {
   color: var(--eo-text);
-  font-size: clamp(36px, 6vw, 72px);
+  font-size: clamp(32px, 6vw, 72px);
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -83,7 +84,7 @@
 
 :where(.eo-hero__lead) {
   color: #454545;
-  font-size: clamp(16px, 1.6vw, 20px);
+  font-size: clamp(15px, 1.6vw, 20px);
   line-height: 1.6;
   max-width: 780px;
   margin: 0 auto 40px;
@@ -112,6 +113,8 @@
   transition: all 0.25s var(--eo-ease);
   font-family: var(--eo-font);
   min-width: 220px;
+  /* Touch-friendly */
+  min-height: 44px;
 }
 :where(.eo-btn--primary) {
   background: var(--eo-accent-hover);
@@ -180,4 +183,74 @@
   font-size: 14px;
   margin: 0;
   line-height: 1.55;
+}
+
+/* ── Tablet (641–960px) ── */
+@media (max-width: 960px) {
+  :where(.eo-hero__stats) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 48px;
+  }
+  :where(.eo-hero__stat):last-child {
+    grid-column: 1 / -1;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+}
+
+/* ── Mobile (≤640px) ── */
+@media (max-width: 640px) {
+  :where(.eo-hero) {
+    padding-top: 90px;
+    padding-bottom: 40px;
+    min-height: auto;
+  }
+  :where(.eo-hero__bg) {
+    inset: 70px 12px 8px;
+    border-radius: 18px;
+  }
+  :where(.eo-hero__content) {
+    padding: 24px 16px;
+    border-radius: var(--eo-radius-lg, 16px);
+  }
+  :where(.eo-hero__badge) {
+    font-size: 11px;
+    padding: 6px 12px;
+    margin-bottom: 20px;
+    letter-spacing: 0.06em;
+  }
+  :where(.eo-hero__title) {
+    font-size: clamp(28px, 8vw, 40px);
+    margin-bottom: 16px;
+  }
+  :where(.eo-hero__lead) {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+  :where(.eo-hero__actions) {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+  :where(.eo-btn) {
+    min-width: 0;
+    width: 100%;
+    font-size: 16px;
+    padding: 14px 24px;
+  }
+  :where(.eo-hero__stats) {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  :where(.eo-hero__stat):last-child {
+    grid-column: auto;
+    max-width: none;
+  }
+  :where(.eo-hero__stat) {
+    padding: 20px;
+  }
 }

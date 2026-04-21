@@ -1,7 +1,7 @@
 /* Шаблон одной статьи — типографика, обложка, мета, related. */
 
 :where(.eo-article) {
-  padding-top: clamp(40px, 6vw, 72px);
+  padding-top: clamp(24px, 6vw, 72px);
 }
 
 /* Хлебные крошки */
@@ -155,8 +155,8 @@
 :where(.eo-article__body em) { font-style: italic; }
 
 :where(.eo-article__body blockquote) {
-  margin: 32px 0;
-  padding: 24px 28px;
+  margin: 20px 0;
+  padding: 16px 28px;
   border-left: 4px solid var(--eo-accent);
   background: var(--eo-accent-soft);
   border-radius: var(--eo-radius-sm);
@@ -239,12 +239,17 @@
   grid-template-columns: 1fr;
   gap: 16px;
 }
-@media (min-width: 720px) {
+/* Tablet: 2 колонки */
+@media (min-width: 641px) and (max-width: 960px) {
+  :where(.eo-article__related-list) { grid-template-columns: repeat(2, 1fr); }
+}
+/* Desktop: 3 колонки */
+@media (min-width: 961px) {
   :where(.eo-article__related-list) { grid-template-columns: repeat(3, 1fr); }
 }
 :where(.eo-article__related-item) {
   display: block;
-  padding: 22px 24px;
+  padding: 20px 20px;
   background: rgba(255, 255, 255, 0.65);
   border: 1px solid var(--eo-border);
   border-radius: var(--eo-radius-md);
@@ -252,6 +257,7 @@
   -webkit-backdrop-filter: blur(10px);
   transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
   height: 100%;
+  min-height: 44px;
 }
 :where(.eo-article__related-item:hover) {
   transform: translateY(-3px);
@@ -273,4 +279,109 @@
   font-weight: 600;
   line-height: 1.4;
   color: var(--eo-text);
+}
+
+/* ==================== Mobile (≤640px) ==================== */
+@media (max-width: 640px) {
+  :where(.eo-article) {
+    padding-top: 24px;
+  }
+
+  :where(.eo-article__crumbs) {
+    font-size: 13px;
+    margin-bottom: 18px;
+    gap: 4px;
+  }
+
+  :where(.eo-article__head) {
+    margin-bottom: 24px;
+  }
+
+  :where(.eo-article__cat) {
+    font-size: 11px;
+    padding: 5px 10px;
+    margin-bottom: 14px;
+  }
+
+  :where(.eo-article__title) {
+    font-size: clamp(24px, 7vw, 32px);
+    margin-bottom: 16px;
+  }
+
+  :where(.eo-article__meta) {
+    font-size: 13px;
+    gap: 8px;
+  }
+
+  :where(.eo-article__cover) {
+    margin-bottom: 24px;
+    border-radius: var(--eo-radius-md);
+  }
+
+  :where(.eo-article__cover img) {
+    width: 100%;
+    height: auto;
+  }
+
+  :where(.eo-article__body) {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  :where(.eo-article__lead) {
+    font-size: 17px;
+    margin-bottom: 24px;
+  }
+
+  :where(.eo-article__body h2) {
+    font-size: clamp(20px, 5.5vw, 24px);
+    margin: 32px 0 12px;
+  }
+
+  :where(.eo-article__body h3) {
+    font-size: clamp(18px, 4.5vw, 20px);
+    margin: 24px 0 10px;
+  }
+
+  :where(.eo-article__body blockquote) {
+    padding: 14px 18px;
+    font-size: 16px;
+  }
+
+  :where(.eo-article__body ul),
+  :where(.eo-article__body ol) {
+    padding-left: 20px;
+  }
+
+  :where(.eo-article__cta) {
+    padding: 24px 18px;
+    border-radius: var(--eo-radius-md);
+  }
+
+  :where(.eo-article__cta-btn) {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+    font-size: 15px;
+  }
+
+  :where(.eo-article__related) {
+    padding-top: 24px;
+  }
+
+  :where(.eo-article__related-item) {
+    padding: 16px;
+    min-height: 64px;
+  }
+}
+
+/* ==================== Tablet (641–960px) ==================== */
+@media (min-width: 641px) and (max-width: 960px) {
+  :where(.eo-article__body) {
+    font-size: 17px;
+  }
+
+  :where(.eo-article__cta-btn) {
+    min-height: 48px;
+  }
 }

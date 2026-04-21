@@ -1,4 +1,5 @@
 <!-- === Эко Органика: глобальные стили. Вставить в Настройки сайта → HEAD === -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -36,7 +37,7 @@
     --eo-ease: cubic-bezier(0.22, 1, 0.36, 1);
     --eo-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-    --eo-container: min(1200px, 100% - 2rem);
+    --eo-container: min(1200px, calc(100% - 2rem));
   }
 
   /* Общий контейнер секций — низкая специфичность, не конфликтует с Tilda */
@@ -50,6 +51,14 @@
   :where(.eo-wrap) {
     width: var(--eo-container);
     margin-inline: auto;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    overflow-x: hidden;
   }
 
   :where(.eo-section *) {

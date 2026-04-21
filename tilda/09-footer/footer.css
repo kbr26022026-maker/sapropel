@@ -16,15 +16,25 @@
   gap: 24px;
   text-align: center;
 }
-@media (min-width: 760px) {
-  :where(.eo-footer__inner) { flex-direction: row; justify-content: space-between; text-align: left; }
+
+/* Tablet and up: горизонтальный ряд */
+@media (min-width: 641px) {
+  :where(.eo-footer__inner) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-align: left;
+  }
 }
+
 :where(.eo-footer__brand) {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   color: var(--eo-accent-hover);
   text-decoration: none;
+  /* touch target */
+  min-height: 44px;
 }
 :where(.eo-footer__brand span) {
   color: var(--eo-text);
@@ -38,6 +48,12 @@
 }
 :where(.eo-footer__copy p) { margin: 0; }
 :where(.eo-footer__copy p + p) { margin-top: 4px; }
+:where(.eo-footer__copy .eo-footer__link) {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 8px;
+  min-height: 44px;
+}
 :where(.eo-footer__actions) {
   display: flex;
   flex-direction: column;
@@ -77,20 +93,29 @@
 }
 :where(.eo-footer__link:hover) { color: var(--eo-accent-hover); }
 
-@media (min-width: 760px) {
+/* Tablet and up: выровнять actions вправо */
+@media (min-width: 641px) {
   :where(.eo-footer__actions) {
     align-items: flex-end;
   }
 }
 
-@media (max-width: 759px) {
+/* Mobile (≤640px) */
+@media (max-width: 640px) {
   :where(.eo-footer) {
-    padding-bottom: 36px;
+    padding: 32px 0 28px;
+  }
+  :where(.eo-footer__inner) {
+    padding-inline: 16px;
+    gap: 20px;
   }
   :where(.eo-footer__ozon) {
     align-items: center;
   }
   :where(.eo-footer__ozon-badge) {
-    width: 164px;
+    width: 160px;
+  }
+  :where(.eo-footer__copy) {
+    font-size: 14px;
   }
 }

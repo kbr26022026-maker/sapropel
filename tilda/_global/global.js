@@ -31,5 +31,14 @@
   }
 
   // Повторный запуск при динамической вставке Tilda-блоков
-  new MutationObserver(run).observe(document.body, { childList: true, subtree: true });
+  var scheduled = false;
+  var rerun = function () {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(function () {
+      scheduled = false;
+      run();
+    });
+  };
+  new MutationObserver(rerun).observe(document.body, { childList: true, subtree: true });
 })();

@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "tilda/**/*", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/", "dest": "/tilda/preview.html" },
+    { "src": "/articles/?$", "dest": "/tilda/preview-articles.html" },
+    { "src": "/articles/.*", "dest": "/tilda/preview-article.html" },
+    { "src": "/article/?$", "dest": "/tilda/preview-article.html" },
+    { "src": "/(.*)", "dest": "/tilda/$1" }
+  ]
+}

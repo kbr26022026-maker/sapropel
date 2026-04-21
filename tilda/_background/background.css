@@ -95,3 +95,18 @@
 @media (prefers-reduced-motion: reduce) {
   :where(.eo-bg__orb) { animation: none; }
 }
+
+@media (max-width: 640px) {
+  :where(.eo-bg__orb) {
+    filter: blur(72px);
+    opacity: 0.4;
+  }
+  :where(.eo-bg__orb--1),
+  :where(.eo-bg__orb--2),
+  :where(.eo-bg__orb--3),
+  :where(.eo-bg__orb--4),
+  :where(.eo-bg__orb--5) {
+    width: 42vw;
+    height: 42vw;
+  }
+}

@@ -2,17 +2,18 @@
   text-align: center;
   max-width: 720px;
   margin: 0 auto 60px;
+  padding: 0 16px;
 }
 :where(.eo-videos__head h2) {
   color: var(--eo-text);
-  font-size: clamp(28px, 4vw, 44px);
+  font-size: clamp(24px, 4vw, 44px);
   font-weight: 700;
   letter-spacing: -0.02em;
   margin: 0 0 16px;
 }
 :where(.eo-videos__head p) {
   color: var(--eo-text-muted);
-  font-size: 18px;
+  font-size: clamp(15px, 2vw, 18px);
   margin: 0;
 }
 
@@ -32,18 +33,30 @@
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 14px 40px rgba(69, 69, 69, 0.10);
 }
-@media (min-width: 720px) {
+@media (min-width: 641px) {
   :where(.eo-video) { grid-column: span 6; }
   :where(.eo-video--wide) { grid-column: span 12; }
 }
-@media (min-width: 1040px) {
+@media (min-width: 960px) {
   :where(.eo-video) { grid-column: span 4; }
   :where(.eo-video--wide) { grid-column: span 8; }
 }
+
+/* Responsive iframe — aspect-ratio + padding-bottom fallback */
 :where(.eo-video__frame) {
   position: relative;
   aspect-ratio: 16 / 9;
   background: #454545;
+  /* Fallback для браузеров без aspect-ratio */
+  height: 0;
+  padding-bottom: 56.25%;
+}
+/* Если aspect-ratio поддерживается — убираем padding-bottom */
+@supports (aspect-ratio: 16 / 9) {
+  :where(.eo-video__frame) {
+    height: auto;
+    padding-bottom: 0;
+  }
 }
 :where(.eo-video__frame iframe) {
   position: absolute;
@@ -58,4 +71,34 @@
   font-weight: 700;
   font-size: 17px;
   line-height: 1.35;
+}
+
+/* ===== Responsive: Mobile (≤640px) ===== */
+@media (max-width: 640px) {
+  :where(.eo-videos__head) {
+    margin-bottom: 32px;
+    padding: 0;
+  }
+  :where(.eo-videos__grid) {
+    gap: 16px;
+  }
+  :where(.eo-video),
+  :where(.eo-video--wide) {
+    grid-column: span 12;
+  }
+  :where(.eo-video figcaption) {
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+}
+
+/* ===== Responsive: Tablet (641–960px) ===== */
+@media (min-width: 641px) and (max-width: 960px) {
+  :where(.eo-videos__grid) {
+    gap: 20px;
+  }
+  :where(.eo-video figcaption) {
+    padding: 16px 18px;
+    font-size: 15px;
+  }
 }

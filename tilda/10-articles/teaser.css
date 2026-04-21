@@ -1,5 +1,10 @@
 /* Teaser-блок «Блог и статьи» на главной. */
 
+:where(.eo-articles-teaser) {
+  padding-top: clamp(32px, 4vw, 52px);
+  padding-bottom: clamp(32px, 4vw, 52px);
+}
+
 :where(.eo-articles-teaser__card) {
   position: relative;
   padding: clamp(32px, 5vw, 56px);

@@ -53,6 +53,10 @@
   box-shadow: 0 6px 20px rgba(69, 69, 69, 0.05);
   transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
+:where(.eo-res-card > div),
+:where(.eo-res-card > h3) {
+  min-width: 0;
+}
 :where(.eo-res-card:hover) {
   background: rgba(255, 255, 255, 0.9);
   transform: translateY(-2px);
@@ -81,6 +85,7 @@
   font-weight: 600;
   line-height: 1.4;
   margin: 0;
+  overflow-wrap: anywhere;
   transition: color 0.2s;
 }
 :where(.eo-res-card--doc h3) { color: var(--eo-text); font-weight: 500; font-size: 16px; }
@@ -94,7 +99,8 @@
   display: none;
   align-items: center;
   justify-content: center;
-  padding: clamp(12px, 3vw, 40px);
+  padding: clamp(12px, 2.4vw, 32px);
+  padding-bottom: calc(clamp(12px, 2.4vw, 32px) + var(--eo-modal-bottom, 0px));
   font-family: var(--eo-font);
 }
 :where(.eo-doc-modal.eo-doc-modal--open) { display: flex; }
@@ -110,7 +116,8 @@
   position: relative;
   z-index: 1;
   width: min(1100px, 100%);
-  height: min(90vh, 900px);
+  height: min(88vh, 820px);
+  max-height: calc(100dvh - var(--eo-modal-bottom, 0px) - clamp(24px, 4vw, 64px));
   display: flex;
   flex-direction: column;
   background: #ffffff;
@@ -228,6 +235,45 @@
 }
 :where(.eo-doc-modal__fallback[hidden]) { display: none; }
 body.eo-doc-modal-lock { overflow: hidden; }
+
+@media (max-width: 760px) {
+  :where(.eo-resources__grid) {
+    gap: 40px;
+  }
+  :where(.eo-res-card) {
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  :where(.eo-doc-modal__dialog) {
+    width: 100%;
+    height: auto;
+    min-height: min(70vh, 520px);
+  }
+  :where(.eo-doc-modal__head) {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px 16px;
+  }
+  :where(.eo-doc-modal__actions) {
+    width: 100%;
+    justify-content: space-between;
+  }
+  :where(.eo-doc-modal__title) {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 560px) {
+  :where(.eo-res-card) {
+    flex-direction: column;
+  }
+  :where(.eo-res-card svg) {
+    align-self: flex-start;
+  }
+}
 
 @keyframes eoDocFade { from { opacity: 0 } to { opacity: 1 } }
 @keyframes eoDocPop {

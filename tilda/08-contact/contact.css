@@ -69,6 +69,8 @@
   color: var(--eo-text);
   font-size: 22px;
   font-weight: 600;
+  max-width: 100%;
+  overflow-wrap: anywhere;
   transition: color 0.2s;
 }
 :where(.eo-contact__value:hover) { color: var(--eo-accent-hover); }
@@ -77,6 +79,7 @@
   font-size: 17px;
   line-height: 1.5;
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 :where(.eo-contact__form) {
@@ -142,4 +145,35 @@
   color: var(--eo-accent-deep);
   text-align: center;
   font-size: 14px;
+}
+
+@media (max-width: 960px) {
+  :where(.eo-contact__inner) {
+    gap: 40px;
+  }
+  :where(.eo-contact__lead) {
+    font-size: 18px;
+    margin-bottom: 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  :where(.eo-contact__row) {
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  :where(.eo-contact__icon) {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+  }
+  :where(.eo-contact__value) {
+    font-size: 18px;
+  }
+  :where(.eo-contact__address) {
+    font-size: 15px;
+  }
+  :where(.eo-contact__form) {
+    padding: 20px 16px;
+  }
 }

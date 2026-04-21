@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Preview — Эко Органика (для Tilda)</title>
 
   <!-- === Содержимое _global/head.html === -->
@@ -22,18 +22,20 @@
       --eo-shadow: 0 10px 30px rgba(15,23,42,0.08); --eo-shadow-accent: 0 10px 30px rgba(16,185,129,0.22);
       --eo-ease: cubic-bezier(0.22,1,0.36,1);
       --eo-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --eo-container: min(1200px, 100% - 2rem);
+      --eo-container: min(1200px, calc(100% - 2rem));
     }
     :where(.eo-section) { position: relative; z-index: 2; padding: clamp(56px,8vw,96px) 0; font-family: var(--eo-font); color: var(--eo-text); }
     :where(.eo-wrap) { width: var(--eo-container); margin-inline: auto; }
     :where(.eo-section *) { box-sizing: border-box; }
     :where(.eo-reveal) { opacity: 0; transform: translateY(28px); transition: opacity .8s var(--eo-ease), transform .8s var(--eo-ease); transition-delay: var(--eo-delay,0ms); }
     :where(.eo-reveal.eo-in) { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { :where(.eo-reveal) { opacity: 1; transform: none; transition: none; } :where(.eo-section *) { animation: none !important; } }
     :where(.eo-section h1,.eo-section h2,.eo-section h3,.eo-section h4,.eo-section p,.eo-section a,.eo-section span,.eo-section li,.eo-section button,.eo-section label,.eo-section input,.eo-section textarea) { font-family: var(--eo-font); }
     :where(.eo-section a) { color: inherit; text-decoration: none; }
-    :where(.eo-section img) { max-width: 100%; display: block; }25); color: #0f172a; }
-    body { margin: 0; background: var(--eo-bg); font-family: var(--eo-font); color: var(--eo-texolor: #fff; }
-    body { margin: 0; background: var(--eo-bg); font-family: var(--eo-font); }
+    :where(.eo-section img) { max-width: 100%; display: block; }
+    :where(.eo-section ::selection) { background: rgba(16,185,129,.25); color: #0f172a; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--eo-bg); font-family: var(--eo-font); color: var(--eo-text); overflow-x: hidden; }
   </style>
 
   <link rel="stylesheet" href="_background/background.css">

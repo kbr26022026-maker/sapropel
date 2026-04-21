@@ -19,7 +19,7 @@
 
 :where(.eo-features__grid) {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
   gap: 24px;
 }
 
@@ -124,4 +124,31 @@
   0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: rotate(360deg); }
   33%      { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: rotate(240deg); }
   66%      { border-radius: 50% 50% 60% 40% / 40% 60% 50% 60%; transform: rotate(120deg); }
+}
+
+@media (max-width: 960px) {
+  :where(.eo-features__head) {
+    margin-bottom: 40px;
+    padding: 0 8px;
+  }
+  :where(.eo-features__lead) {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  :where(.eo-features__grid) {
+    gap: 14px;
+  }
+  :where(.eo-feature) {
+    padding: 20px;
+  }
+  :where(.eo-feature__icon) {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 18px;
+  }
+  :where(.eo-feature h3) {
+    font-size: 18px;
+  }
 }

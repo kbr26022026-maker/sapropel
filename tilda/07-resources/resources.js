@@ -16,6 +16,35 @@
     var fallback = modal.querySelector('#eoDocModalFallback');
     var fallbackLink = fallback.querySelector('a');
     var lastFocused = null;
+    var focusableSelector = 'a[href], button:not([disabled]), iframe, [tabindex]:not([tabindex="-1"])';
+
+    function updateViewportOffset() {
+      if (!window.visualViewport) {
+        modal.style.removeProperty('--eo-modal-bottom');
+        return;
+      }
+
+      var offset = Math.max(0, window.innerHeight - window.visualViewport.height - window.visualViewport.offsetTop);
+      modal.style.setProperty('--eo-modal-bottom', offset + 'px');
+    }
+
+    function trapFocus(e) {
+      if (e.key !== 'Tab' || !modal.classList.contains('eo-doc-modal--open')) return;
+
+      var focusable = modal.querySelectorAll(focusableSelector);
+      if (!focusable.length) return;
+
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
 
     function close() {
       modal.classList.remove('eo-doc-modal--open');
@@ -23,6 +52,7 @@
       body.innerHTML = '';
       fallback.hidden = true;
       document.body.classList.remove('eo-doc-modal-lock');
+      modal.style.removeProperty('--eo-modal-bottom');
       if (lastFocused && typeof lastFocused.focus === 'function') {
         try { lastFocused.focus(); } catch (e) {}
       }
@@ -71,6 +101,14 @@
       modal.classList.add('eo-doc-modal--open');
       modal.setAttribute('aria-hidden', 'false');
       document.body.classList.add('eo-doc-modal-lock');
+      updateViewportOffset();
+
+      window.setTimeout(function () {
+        var focusTarget = modal.querySelector('.eo-doc-modal__btn--close') || modal.querySelector('.eo-doc-modal__btn--open');
+        if (focusTarget && typeof focusTarget.focus === 'function') {
+          focusTarget.focus();
+        }
+      }, 0);
     }
 
     // Клики по карточкам документов
@@ -102,7 +140,13 @@
     });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && modal.classList.contains('eo-doc-modal--open')) close();
+      trapFocus(e);
     });
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', updateViewportOffset);
+      window.visualViewport.addEventListener('scroll', updateViewportOffset);
+    }
   }
 
   if (document.readyState === 'loading') {
