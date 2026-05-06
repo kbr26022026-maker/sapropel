@@ -1,4 +1,4 @@
-:where(.eo-bg) {
+:is(.eo-bg) {
   position: fixed;
   inset: 0;
   z-index: -1;
@@ -6,7 +6,7 @@
   background: var(--eo-bg, #FFFFFF);
   pointer-events: none;
 }
-:where(.eo-bg__base) {
+:is(.eo-bg__base) {
   position: absolute;
   inset: 0;
   background:
@@ -17,7 +17,7 @@
     radial-gradient(950px 750px at 90% 92%, rgba(4, 120, 87, 0.09), transparent 65%),
     linear-gradient(180deg, #FFFFFF 0%, #FAFDFB 100%);
 }
-:where(.eo-bg__orb) {
+:is(.eo-bg__orb) {
   position: absolute;
   border-radius: 50%;
   mix-blend-mode: multiply;
@@ -25,7 +25,7 @@
   will-change: transform;
   opacity: 0.55;
 }
-:where(.eo-bg__orb--1) {
+:is(.eo-bg__orb--1) {
   top: 6%;
   left: 8%;
   width: 32vw;
@@ -33,7 +33,7 @@
   background: rgba(4, 120, 87, 0.22);
   animation: eoOrb1 22s linear infinite;
 }
-:where(.eo-bg__orb--2) {
+:is(.eo-bg__orb--2) {
   top: 18%;
   right: 6%;
   width: 28vw;
@@ -41,7 +41,7 @@
   background: rgba(16, 185, 129, 0.18);
   animation: eoOrb2 26s linear infinite;
 }
-:where(.eo-bg__orb--3) {
+:is(.eo-bg__orb--3) {
   top: 44%;
   left: 46%;
   width: 26vw;
@@ -50,7 +50,7 @@
   filter: blur(90px);
   animation: eoOrb3 18s linear infinite;
 }
-:where(.eo-bg__orb--4) {
+:is(.eo-bg__orb--4) {
   bottom: 22%;
   left: 4%;
   width: 30vw;
@@ -58,7 +58,7 @@
   background: rgba(16, 185, 129, 0.16);
   animation: eoOrb2 30s linear infinite reverse;
 }
-:where(.eo-bg__orb--5) {
+:is(.eo-bg__orb--5) {
   bottom: 4%;
   right: 10%;
   width: 34vw;
@@ -66,7 +66,7 @@
   background: rgba(4, 120, 87, 0.20);
   animation: eoOrb1 28s linear infinite reverse;
 }
-:where(.eo-bg__noise) {
+:is(.eo-bg__noise) {
   position: absolute;
   inset: 0;
   opacity: 0.035;
@@ -93,19 +93,19 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :where(.eo-bg__orb) { animation: none; }
+  :is(.eo-bg__orb) { animation: none; }
 }
 
 @media (max-width: 640px) {
-  :where(.eo-bg__orb) {
+  :is(.eo-bg__orb) {
     filter: blur(72px);
     opacity: 0.4;
   }
-  :where(.eo-bg__orb--1),
-  :where(.eo-bg__orb--2),
-  :where(.eo-bg__orb--3),
-  :where(.eo-bg__orb--4),
-  :where(.eo-bg__orb--5) {
+  :is(.eo-bg__orb--1),
+  :is(.eo-bg__orb--2),
+  :is(.eo-bg__orb--3),
+  :is(.eo-bg__orb--4),
+  :is(.eo-bg__orb--5) {
     width: 42vw;
     height: 42vw;
   }

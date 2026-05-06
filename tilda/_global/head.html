@@ -40,15 +40,15 @@
     --eo-container: min(1200px, calc(100% - 2rem));
   }
 
-  /* Общий контейнер секций — низкая специфичность, не конфликтует с Tilda */
-  :where(.eo-section) {
+  /* Общий контейнер секций с нормальной специфичностью для корректной работы в Tilda */
+  :is(.eo-section) {
     position: relative;
     z-index: 2;
     padding: clamp(56px, 8vw, 96px) 0;
     font-family: var(--eo-font);
     color: var(--eo-text);
   }
-  :where(.eo-wrap) {
+  :is(.eo-wrap) {
     width: var(--eo-container);
     margin-inline: auto;
   }
@@ -61,40 +61,40 @@
     overflow-x: hidden;
   }
 
-  :where(.eo-section *) {
+  :is(.eo-section *) {
     box-sizing: border-box;
   }
 
   /* Универсальный reveal-эффект: элемент появляется при скролле */
-  :where(.eo-reveal) {
+  :is(.eo-reveal) {
     opacity: 0;
     transform: translateY(28px);
     transition: opacity 0.8s var(--eo-ease), transform 0.8s var(--eo-ease);
     transition-delay: var(--eo-delay, 0ms);
   }
-  :where(.eo-reveal.eo-in) {
+  :is(.eo-reveal.eo-in) {
     opacity: 1;
     transform: none;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    :where(.eo-reveal) { opacity: 1; transform: none; transition: none; }
-    :where(.eo-section *) { animation: none !important; }
+    :is(.eo-reveal) { opacity: 1; transform: none; transition: none; }
+    :is(.eo-section *) { animation: none !important; }
   }
 
   /* Базовые стили тегов внутри секций, чтобы Tilda не подменяла */
-  :where(.eo-section h1, .eo-section h2, .eo-section h3, .eo-section h4, .eo-section p, .eo-section a, .eo-section span, .eo-section li, .eo-section button, .eo-section label, .eo-section input, .eo-section textarea) {
+  :is(.eo-section h1, .eo-section h2, .eo-section h3, .eo-section h4, .eo-section p, .eo-section a, .eo-section span, .eo-section li, .eo-section button, .eo-section label, .eo-section input, .eo-section textarea) {
     font-family: var(--eo-font);
   }
-  :where(.eo-section a) {
+  :is(.eo-section a) {
     color: inherit;
     text-decoration: none;
   }
-  :where(.eo-section img) {
+  :is(.eo-section img) {
     max-width: 100%;
     display: block;
   }
-  :where(.eo-section ::selection) {
+  :is(.eo-section ::selection) {
     background: rgba(16, 185, 129, 0.25);
     color: #0f172a;
   }

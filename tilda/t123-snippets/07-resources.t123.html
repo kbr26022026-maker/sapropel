@@ -1,0 +1,535 @@
+<!-- Replace all __TILDA_DOC_*__ placeholders with real uploaded PDF URLs before pasting into Tilda. -->
+<style>
+:is(.eo-resources__grid) {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 56px;
+}
+@media (min-width: 960px) {
+  :is(.eo-resources__grid) { grid-template-columns: 1fr 1fr; gap: 64px; }
+}
+:is(.eo-resources__head) {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+:is(.eo-resources__head h2) {
+  color: var(--eo-text);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  margin: 0;
+}
+:is(.eo-resources__badge) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+}
+:is(.eo-resources__badge--amber) { background: var(--eo-amber-soft); color: var(--eo-amber); }
+:is(.eo-resources__badge--blue)  { background: var(--eo-blue-soft); color: var(--eo-blue); }
+
+:is(.eo-resources__list) {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+:is(.eo-res-card) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 24px;
+  border-radius: var(--eo-radius-md);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--eo-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--eo-text);
+  box-shadow: 0 6px 20px rgba(69, 69, 69, 0.05);
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+:is(.eo-res-card > div),
+:is(.eo-res-card > h3) {
+  min-width: 0;
+}
+:is(.eo-res-card:hover) {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(69, 69, 69, 0.10);
+}
+:is(.eo-res-card--article:hover) { border-color: rgba(0, 66, 37, 0.55); }
+:is(.eo-res-card--article:hover h3) { color: var(--eo-accent-deep); }
+:is(.eo-res-card--article:hover svg) { color: var(--eo-accent-deep); }
+
+:is(.eo-res-card--doc:hover) { border-color: rgba(69, 69, 69, 0.55); }
+:is(.eo-res-card--doc:hover h3) { color: var(--eo-blue); }
+:is(.eo-res-card--doc:hover svg) { color: var(--eo-blue); }
+
+:is(.eo-res-card__source) {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--eo-accent-deep);
+  margin-bottom: 8px;
+}
+:is(.eo-res-card h3) {
+  color: var(--eo-text);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0;
+  overflow-wrap: anywhere;
+  transition: color 0.2s;
+}
+:is(.eo-res-card--doc h3) { color: var(--eo-text); font-weight: 500; font-size: 16px; }
+:is(.eo-res-card svg) { color: var(--eo-text-dim); flex-shrink: 0; transition: color 0.2s; }
+
+:is(.eo-doc-modal) {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(12px, 2.4vw, 32px);
+  padding-bottom: calc(clamp(12px, 2.4vw, 32px) + var(--eo-modal-bottom, 0px));
+  font-family: var(--eo-font);
+}
+:is(.eo-doc-modal.eo-doc-modal--open) { display: flex; }
+:is(.eo-doc-modal__backdrop) {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 24, 30, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: eoDocFade 0.25s var(--eo-ease);
+}
+:is(.eo-doc-modal__dialog) {
+  position: relative;
+  z-index: 1;
+  width: min(1100px, 100%);
+  height: min(88vh, 820px);
+  max-height: calc(100dvh - var(--eo-modal-bottom, 0px) - clamp(24px, 4vw, 64px));
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: var(--eo-radius-md);
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.35);
+  overflow: hidden;
+  animation: eoDocPop 0.3s var(--eo-ease);
+}
+:is(.eo-doc-modal__head) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--eo-border);
+  background: #fff;
+  flex-shrink: 0;
+}
+:is(.eo-doc-modal__title) {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--eo-text);
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+:is(.eo-doc-modal__actions) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+:is(.eo-doc-modal__btn) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--eo-border);
+  background: #fff;
+  color: var(--eo-text);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+:is(.eo-doc-modal__btn:hover) {
+  background: var(--eo-bg);
+  border-color: var(--eo-border-strong);
+  color: var(--eo-accent-deep);
+}
+:is(.eo-doc-modal__btn--close) { padding: 8px; }
+:is(.eo-doc-modal__btn--primary) {
+  background: var(--eo-accent);
+  border-color: var(--eo-accent);
+  color: #fff;
+}
+:is(.eo-doc-modal__btn--primary:hover) {
+  background: var(--eo-accent-hover);
+  border-color: var(--eo-accent-hover);
+  color: #fff;
+}
+@media (max-width: 560px) {
+  :is(.eo-doc-modal__btn--open span) { display: none; }
+  :is(.eo-doc-modal__btn--open) { padding: 8px; }
+}
+:is(.eo-doc-modal__body) {
+  position: relative;
+  flex: 1 1 auto;
+  overflow: auto;
+  background: #f1f4f8;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+:is(.eo-doc-modal__body iframe) {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  background: #fff;
+}
+:is(.eo-doc-modal__body img) {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  display: block;
+  object-fit: contain;
+  background: #fff;
+}
+:is(.eo-doc-modal__body-loader) {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--eo-text-dim);
+  font-size: 14px;
+}
+:is(.eo-doc-modal__fallback) {
+  padding: 24px;
+  text-align: center;
+  background: #fff;
+  border-top: 1px solid var(--eo-border);
+}
+:is(.eo-doc-modal__fallback p) {
+  margin: 0 0 14px;
+  color: var(--eo-text-muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+:is(.eo-doc-modal__fallback[hidden]) { display: none; }
+body.eo-doc-modal-lock { overflow: hidden; }
+
+@media (max-width: 760px) {
+  :is(.eo-resources__grid) {
+    gap: 40px;
+  }
+  :is(.eo-res-card) {
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  :is(.eo-doc-modal__dialog) {
+    width: 100%;
+    height: auto;
+    min-height: min(70vh, 520px);
+  }
+  :is(.eo-doc-modal__head) {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px 16px;
+  }
+  :is(.eo-doc-modal__actions) {
+    width: 100%;
+    justify-content: space-between;
+  }
+  :is(.eo-doc-modal__title) {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 560px) {
+  :is(.eo-res-card) {
+    flex-direction: column;
+  }
+  :is(.eo-res-card svg) {
+    align-self: flex-start;
+  }
+}
+
+@keyframes eoDocFade { from { opacity: 0 } to { opacity: 1 } }
+@keyframes eoDocPop {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+</style>
+
+<section class="eo-section eo-resources" id="resources">
+  <div class="eo-wrap">
+    <div class="eo-resources__grid">
+      <div>
+        <header class="eo-resources__head eo-reveal">
+          <span class="eo-resources__badge eo-resources__badge--amber">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+          </span>
+          <h2>Научные статьи</h2>
+        </header>
+        <ul class="eo-resources__list">
+          <li class="eo-reveal"><a href="https://www.nsktv.ru/news/technology/v_novosibirskoy_oblasti_obnaruzhili_zalezhi_unikalnogo_sapropelya/" target="_blank" rel="noopener" class="eo-res-card eo-res-card--article">
+            <div>
+              <span class="eo-res-card__source">NSKTV.RU</span>
+              <h3>Обнаружение залежей уникального сапропеля в Новосибирской области</h3>
+            </div>
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a></li>
+          <li class="eo-reveal" style="--eo-delay: 80ms"><a href="https://www.igm.nsc.ru/index.php/novost/raznoe/item/1649-scientists-have-studied-sapropels-of-the-novosibirsk-region" target="_blank" rel="noopener" class="eo-res-card eo-res-card--article">
+            <div>
+              <span class="eo-res-card__source">Институт геологии им. В. С. Соболева</span>
+              <h3>Учёные исследовали сапропели Новосибирской области</h3>
+            </div>
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a></li>
+          <li class="eo-reveal" style="--eo-delay: 160ms"><a href="https://cloud.mail.ru/public/Qh5a/Xvje54H3S" target="_blank" rel="noopener" class="eo-res-card eo-res-card--article">
+            <div>
+              <span class="eo-res-card__source">Наука в России</span>
+              <h3>Сапропели: богатства со дна озёр</h3>
+            </div>
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a></li>
+          <li class="eo-reveal" style="--eo-delay: 240ms"><a href="https://cloud.mail.ru/public/ZCBU/SybNKwvBC" target="_blank" rel="noopener" class="eo-res-card eo-res-card--article">
+            <div>
+              <span class="eo-res-card__source">Геохимия</span>
+              <h3>Геохимические особенности голоценового разреза сапропеля</h3>
+            </div>
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a></li>
+        </ul>
+      </div>
+
+      <div>
+        <header class="eo-resources__head eo-reveal">
+          <span class="eo-resources__badge eo-resources__badge--blue">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </span>
+          <h2>Документы и сертификаты</h2>
+        </header>
+        <ul class="eo-resources__list">
+          <li class="eo-reveal"><a href="__TILDA_DOC_PROTOCOL_34680_URL__" target="_blank" rel="noopener" class="eo-res-card eo-res-card--doc" data-preview="__TILDA_DOC_PROTOCOL_34680_URL__" data-preview-type="pdf">
+            <h3>Протокол испытаний № 34680-МС-2024 от 11.12.2024</h3>
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eo-res-card__icon-preview"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/></svg>
+          </a></li>
+          <li class="eo-reveal" style="--eo-delay: 80ms"><a href="__TILDA_DOC_LICENSE_URL__" target="_blank" rel="noopener" class="eo-res-card eo-res-card--doc" data-preview="__TILDA_DOC_LICENSE_URL__" data-preview-type="pdf">
+            <h3>Лицензия на пользование недрами</h3>
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eo-res-card__icon-preview"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/></svg>
+          </a></li>
+          <li class="eo-reveal" style="--eo-delay: 160ms"><a href="__TILDA_DOC_CERT_2016_URL__" target="_blank" rel="noopener" class="eo-res-card eo-res-card--doc" data-preview="__TILDA_DOC_CERT_2016_URL__" data-preview-type="pdf">
+            <h3>Сертификат соответствия от 16.11.2016 г.</h3>
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eo-res-card__icon-preview"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/></svg>
+          </a></li>
+          <li class="eo-reveal" style="--eo-delay: 240ms"><a href="__TILDA_DOC_CERT_2024_URL__" target="_blank" rel="noopener" class="eo-res-card eo-res-card--doc" data-preview="__TILDA_DOC_CERT_2024_URL__" data-preview-type="pdf">
+            <h3>Сертификат соответствия от 11.12.2024 г.</h3>
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eo-res-card__icon-preview"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/></svg>
+          </a></li>
+          <li class="eo-reveal" style="--eo-delay: 320ms"><a href="__TILDA_DOC_FULL_REPORT_URL__" target="_blank" rel="noopener" class="eo-res-card eo-res-card--doc" data-preview="__TILDA_DOC_FULL_REPORT_URL__" data-preview-type="pdf">
+            <h3>Полный отчёт разведки сапропеля Минзелинское, 1964 г.</h3>
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eo-res-card__icon-preview"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/></svg>
+          </a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="eo-doc-modal" id="eoDocModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="eoDocModalTitle">
+    <div class="eo-doc-modal__backdrop" data-eo-doc-close></div>
+    <div class="eo-doc-modal__dialog" role="document">
+      <header class="eo-doc-modal__head">
+        <h3 class="eo-doc-modal__title" id="eoDocModalTitle">Документ</h3>
+        <div class="eo-doc-modal__actions">
+          <a class="eo-doc-modal__btn eo-doc-modal__btn--open" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span>Открыть в новой вкладке</span>
+          </a>
+          <button class="eo-doc-modal__btn eo-doc-modal__btn--close" type="button" data-eo-doc-close aria-label="Закрыть">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </header>
+      <div class="eo-doc-modal__body" id="eoDocModalBody"></div>
+      <div class="eo-doc-modal__fallback" id="eoDocModalFallback" hidden>
+        <p>Предпросмотр этого документа недоступен прямо на сайте (внешний источник блокирует встраивание). Откройте файл в новой вкладке.</p>
+        <a class="eo-doc-modal__btn eo-doc-modal__btn--primary" href="#" target="_blank" rel="noopener">Открыть документ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  'use strict';
+
+  function initDocPreview() {
+    var modal = document.getElementById('eoDocModal');
+    if (!modal || modal.dataset.eoInit === '1') return;
+    modal.dataset.eoInit = '1';
+    if (modal.parentElement !== document.body) {
+      document.body.appendChild(modal);
+    }
+
+    var body = modal.querySelector('#eoDocModalBody');
+    var title = modal.querySelector('#eoDocModalTitle');
+    var openBtn = modal.querySelector('.eo-doc-modal__btn--open');
+    var fallback = modal.querySelector('#eoDocModalFallback');
+    var fallbackLink = fallback.querySelector('a');
+    var lastFocused = null;
+    var focusableSelector = 'a[href], button:not([disabled]), iframe, [tabindex]:not([tabindex="-1"])';
+
+    function updateViewportOffset() {
+      if (!window.visualViewport) {
+        modal.style.removeProperty('--eo-modal-bottom');
+        return;
+      }
+
+      var offset = Math.max(0, window.innerHeight - window.visualViewport.height - window.visualViewport.offsetTop);
+      modal.style.setProperty('--eo-modal-bottom', offset + 'px');
+    }
+
+    function trapFocus(e) {
+      if (e.key !== 'Tab' || !modal.classList.contains('eo-doc-modal--open')) return;
+
+      var focusable = modal.querySelectorAll(focusableSelector);
+      if (!focusable.length) return;
+
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+
+    function close() {
+      modal.classList.remove('eo-doc-modal--open');
+      modal.setAttribute('aria-hidden', 'true');
+      body.innerHTML = '';
+      fallback.hidden = true;
+      document.body.classList.remove('eo-doc-modal-lock');
+      modal.style.removeProperty('--eo-modal-bottom');
+      if (lastFocused && typeof lastFocused.focus === 'function') {
+        try { lastFocused.focus(); } catch (e) {}
+      }
+    }
+
+    function open(data) {
+      lastFocused = document.activeElement;
+      title.textContent = data.title || 'Документ';
+      openBtn.href = data.externalUrl || data.src || '#';
+      fallbackLink.href = data.externalUrl || data.src || '#';
+
+      body.innerHTML = '<div class="eo-doc-modal__body-loader">Загрузка…</div>';
+      fallback.hidden = true;
+
+      if (!data.src) {
+        body.innerHTML = '';
+        fallback.hidden = false;
+      } else if (data.type === 'image') {
+        var img = new Image();
+        img.alt = data.title || '';
+        img.onload = function () { body.innerHTML = ''; body.appendChild(img); };
+        img.onerror = function () { body.innerHTML = ''; fallback.hidden = false; };
+        img.src = data.src;
+      } else {
+        var iframe = document.createElement('iframe');
+        iframe.src = data.src;
+        iframe.setAttribute('title', data.title || 'Документ');
+        iframe.setAttribute('loading', 'lazy');
+        var failTimer = setTimeout(function () {
+          try {
+            var doc = iframe.contentDocument;
+            if (!doc || !doc.body || doc.body.childNodes.length === 0) {
+              fallback.hidden = false;
+            }
+          } catch (e) {}
+        }, 6000);
+        iframe.addEventListener('load', function () { clearTimeout(failTimer); });
+        body.innerHTML = '';
+        body.appendChild(iframe);
+      }
+
+      modal.classList.add('eo-doc-modal--open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('eo-doc-modal-lock');
+      updateViewportOffset();
+
+      window.setTimeout(function () {
+        var focusTarget = modal.querySelector('.eo-doc-modal__btn--close') || modal.querySelector('.eo-doc-modal__btn--open');
+        if (focusTarget && typeof focusTarget.focus === 'function') {
+          focusTarget.focus();
+        }
+      }, 0);
+    }
+
+    document.addEventListener('click', function (e) {
+      var card = e.target.closest('.eo-res-card--doc');
+      if (!card) return;
+      var previewSrc = card.getAttribute('data-preview');
+      var href = card.getAttribute('href');
+      var type = (card.getAttribute('data-preview-type') || 'pdf').toLowerCase();
+      var titleEl = card.querySelector('h3');
+      var titleText = titleEl ? titleEl.textContent.trim() : 'Документ';
+
+      if (previewSrc !== null) {
+        e.preventDefault();
+        open({
+          src: previewSrc || href,
+          externalUrl: href,
+          title: titleText,
+          type: type
+        });
+      }
+    });
+
+    modal.addEventListener('click', function (e) {
+      if (e.target.closest('[data-eo-doc-close]')) close();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('eo-doc-modal--open')) close();
+      trapFocus(e);
+    });
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', updateViewportOffset);
+      window.visualViewport.addEventListener('scroll', updateViewportOffset);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDocPreview);
+  } else {
+    initDocPreview();
+  }
+  window.eoInitDocPreview = initDocPreview;
+})();
+</script>

@@ -1,4 +1,4 @@
-/* === Эко Органика: глобальный скрипт. Вставить перед </body> в <script>...</script> === */
+/* === Эко Органика: глобальный скрипт. Вставить в HEAD в <script>...</script> или в отдельный T123 === */
 (function () {
   if (window.__eoRevealInit) return;
   window.__eoRevealInit = true;

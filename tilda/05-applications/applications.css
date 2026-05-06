@@ -1,30 +1,30 @@
-:where(.eo-apps__head) {
+:is(.eo-apps__head) {
   text-align: center;
   max-width: 720px;
   margin: 0 auto 60px;
   padding: 0 16px;
 }
-:where(.eo-apps__head h2) {
+:is(.eo-apps__head h2) {
   color: var(--eo-text);
   font-size: clamp(24px, 4vw, 48px);
   font-weight: 700;
   letter-spacing: -0.02em;
   margin: 0 0 20px;
 }
-:where(.eo-apps__head p) {
+:is(.eo-apps__head p) {
   color: var(--eo-text-muted);
   font-size: clamp(15px, 2vw, 18px);
   line-height: 1.6;
   margin: 0;
 }
 
-:where(.eo-apps__grid) {
+:is(.eo-apps__grid) {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
   gap: 20px;
 }
 
-:where(.eo-app) {
+:is(.eo-app) {
   position: relative;
   padding: 32px;
   border-radius: var(--eo-radius-lg);
@@ -36,14 +36,14 @@
   overflow: hidden;
   transition: background 0.4s, border-color 0.4s, transform 0.4s var(--eo-ease), box-shadow 0.4s;
 }
-:where(.eo-app:hover) {
+:is(.eo-app:hover) {
   background: rgba(255, 255, 255, 0.85);
   border-color: rgba(0, 66, 37, 0.4);
   transform: translateY(-5px);
   box-shadow: 0 18px 45px rgba(69, 69, 69, 0.12);
 }
 
-:where(.eo-app__orb) {
+:is(.eo-app__orb) {
   position: absolute;
   top: -80px;
   right: -80px;
@@ -55,15 +55,15 @@
   transition: background 0.4s;
   pointer-events: none;
 }
-:where(.eo-app:hover .eo-app__orb) { background: rgba(0, 66, 37, 0.45); }
+:is(.eo-app:hover .eo-app__orb) { background: rgba(0, 66, 37, 0.45); }
 
-:where(.eo-app__icon) {
+:is(.eo-app__icon) {
   position: relative;
   width: 80px;
   height: 80px;
   margin-bottom: 28px;
 }
-:where(.eo-app__icon-core) {
+:is(.eo-app__icon-core) {
   position: absolute;
   inset: 12px;
   display: flex;
@@ -77,7 +77,7 @@
   will-change: transform;
   overflow: hidden;
 }
-:where(.eo-app__icon::before) {
+:is(.eo-app__icon::before) {
   content: '';
   position: absolute;
   inset: 0;
@@ -86,7 +86,7 @@
   animation: eoSpin 20s linear infinite;
   transition: border-color 0.4s;
 }
-:where(.eo-app__icon::after) {
+:is(.eo-app__icon::after) {
   content: '';
   position: absolute;
   inset: 6px;
@@ -95,27 +95,27 @@
   animation: eoSpin 15s linear infinite reverse;
   transition: border-color 0.4s;
 }
-:where(.eo-app:hover .eo-app__icon::before) { border-color: rgba(0, 66, 37, 0.7); }
-:where(.eo-app:hover .eo-app__icon::after)  { border-color: rgba(0, 66, 37, 0.85); }
-:where(.eo-app:hover .eo-app__icon-core) {
+:is(.eo-app:hover .eo-app__icon::before) { border-color: rgba(0, 66, 37, 0.7); }
+:is(.eo-app:hover .eo-app__icon::after)  { border-color: rgba(0, 66, 37, 0.85); }
+:is(.eo-app:hover .eo-app__icon-core) {
   border-color: var(--eo-accent);
   box-shadow: 0 0 25px rgba(0, 66, 37, 0.35);
   transform: scale(1.1);
 }
 
-:where(.eo-app__icon-core > svg) {
+:is(.eo-app__icon-core > svg) {
   width: 24px;
   height: 24px;
   color: var(--eo-accent-deep);
   flex: 0 0 auto;
   transition: color 0.4s, transform 0.4s;
 }
-:where(.eo-app:hover .eo-app__icon-core > svg) {
+:is(.eo-app:hover .eo-app__icon-core > svg) {
   color: var(--eo-accent-hover);
   transform: scale(1.1);
 }
 
-:where(.eo-app h3) {
+:is(.eo-app h3) {
   position: relative;
   z-index: 1;
   color: var(--eo-accent-deep);
@@ -124,8 +124,8 @@
   margin: 0 0 10px;
   transition: color 0.3s;
 }
-:where(.eo-app:hover h3) { color: var(--eo-accent-deep); }
-:where(.eo-app p) {
+:is(.eo-app:hover h3) { color: var(--eo-accent-deep); }
+:is(.eo-app p) {
   position: relative;
   z-index: 1;
   color: var(--eo-text-muted);
@@ -134,7 +134,7 @@
   margin: 0;
   transition: color 0.3s;
 }
-:where(.eo-app:hover p) { color: var(--eo-text); }
+:is(.eo-app:hover p) { color: var(--eo-text); }
 
 @keyframes eoSpin {
   from { transform: rotate(0); }
@@ -143,43 +143,43 @@
 
 /* ===== Responsive: Mobile (≤640px) ===== */
 @media (max-width: 640px) {
-  :where(.eo-apps__head) {
+  :is(.eo-apps__head) {
     margin-bottom: 32px;
     padding: 0;
   }
-  :where(.eo-apps__grid) {
+  :is(.eo-apps__grid) {
     grid-template-columns: 1fr;
     gap: 14px;
   }
-  :where(.eo-app) {
+  :is(.eo-app) {
     padding: 20px;
   }
-  :where(.eo-app__orb) {
+  :is(.eo-app__orb) {
     top: -56px;
     right: -56px;
     width: 120px;
     height: 120px;
   }
-  :where(.eo-app__icon) {
+  :is(.eo-app__icon) {
     width: 64px;
     height: 64px;
     margin-bottom: 18px;
   }
-  :where(.eo-app h3) {
+  :is(.eo-app h3) {
     font-size: 17px;
   }
-  :where(.eo-app p) {
+  :is(.eo-app p) {
     font-size: 14px;
   }
 }
 
 /* ===== Responsive: Tablet (641–960px) ===== */
 @media (min-width: 641px) and (max-width: 960px) {
-  :where(.eo-apps__grid) {
+  :is(.eo-apps__grid) {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
-  :where(.eo-app) {
+  :is(.eo-app) {
     padding: 24px;
   }
 }

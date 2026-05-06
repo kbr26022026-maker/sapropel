@@ -1,12 +1,6 @@
 {
-  "outputDirectory": "tilda",
+  "outputDirectory": "dist",
   "rewrites": [
-    { "source": "/", "destination": "/preview.html" },
-    { "source": "/articles", "destination": "/preview-articles.html" },
-    { "source": "/articles/", "destination": "/preview-articles.html" },
-    { "source": "/articles/:slug", "destination": "/preview-article.html" },
-    { "source": "/articles/:slug/", "destination": "/preview-article.html" },
-    { "source": "/privacy-policy", "destination": "/documents/privacy-policy.html" },
-    { "source": "/privacy-policy/", "destination": "/documents/privacy-policy.html" }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
