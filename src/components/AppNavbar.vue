@@ -2,9 +2,7 @@
   <header class="eo-nav" :class="{ 'eo-nav--scrolled': scrolled }" :data-open="menuOpen ? 'true' : 'false'" id="eoNav">
     <div class="eo-nav__inner eo-wrap">
       <router-link to="/" class="eo-nav__brand" @click="closeMenu">
-        <span class="eo-nav__logo">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.93-6.5 17.64-8.2 17.04Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
-        </span>
+        <img class="eo-nav__logo" src="/logo-leaf.svg" alt="ЭКО ОРГАНИКА" />
         <span class="eo-nav__title">ЭКО ОРГАНИКА</span>
       </router-link>
 
@@ -13,7 +11,6 @@
         <a href="/#features" @click="handleNavLink">Преимущества</a>
         <a href="/#applications" @click="handleNavLink">Применение</a>
         <router-link to="/articles">Блог</router-link>
-        <a href="/#resources" @click="handleNavLink">Статьи и документы</a>
         <a href="/#contact" @click="handleNavLink">Контакты</a>
         <a href="/#contact" class="eo-nav__cta" @click="handleNavLink">Заказать</a>
       </nav>
@@ -31,15 +28,16 @@
       </button>
     </div>
 
-    <div class="eo-nav__mobile" id="eoNavMobile" v-show="menuOpen">
-      <a href="/#about" @click="handleNavLink">О продукте</a>
-      <a href="/#features" @click="handleNavLink">Преимущества</a>
-      <a href="/#applications" @click="handleNavLink">Применение</a>
-      <router-link to="/articles" @click="closeMenu">Блог</router-link>
-      <a href="/#resources" @click="handleNavLink">Статьи и документы</a>
-      <a href="/#contact" @click="handleNavLink">Контакты</a>
-      <a href="/#contact" class="eo-nav__cta-mobile" @click="handleNavLink">Заказать</a>
-    </div>
+    <Transition name="nav-mobile">
+      <div class="eo-nav__mobile" id="eoNavMobile" v-show="menuOpen">
+        <a href="/#about" @click="handleNavLink">О продукте</a>
+        <a href="/#features" @click="handleNavLink">Преимущества</a>
+        <a href="/#applications" @click="handleNavLink">Применение</a>
+        <router-link to="/articles" @click="closeMenu">Блог</router-link>
+        <a href="/#contact" @click="handleNavLink">Контакты</a>
+        <a href="/#contact" class="eo-nav__cta-mobile" @click="handleNavLink">Заказать сапропель</a>
+      </div>
+    </Transition>
   </header>
 </template>
 
@@ -137,21 +135,25 @@ onUnmounted(() => {
 .eo-nav__brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   color: var(--eo-text);
-  font-weight: 700;
+  font-weight: 800;
   min-height: 44px;
+  transition: opacity 0.2s;
 }
+.eo-nav__brand:hover { opacity: 0.8; }
 .eo-nav__logo {
-  background: var(--eo-accent-hover);
-  color: #fff;
-  padding: 8px;
-  border-radius: 12px;
-  display: inline-flex;
-  transition: background 0.2s;
+  display: block;
+  height: 46px;
+  width: auto;
+  object-fit: contain;
+  transition: opacity 0.2s;
 }
-.eo-nav__brand:hover .eo-nav__logo { background: var(--eo-accent); }
-.eo-nav__title { font-size: 18px; letter-spacing: -0.01em; }
+.eo-nav__title {
+  font-size: 17px;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
 
 .eo-nav__links {
   display: flex;
@@ -229,6 +231,21 @@ onUnmounted(() => {
   box-shadow: 0 6px 18px rgba(0, 66, 37, 0.25);
 }
 
+.nav-mobile-enter-active,
+.nav-mobile-leave-active {
+  transition: opacity 0.22s var(--eo-ease), transform 0.22s var(--eo-ease);
+}
+.nav-mobile-enter-from,
+.nav-mobile-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-mobile-enter-active,
+  .nav-mobile-leave-active { transition: none; }
+}
+
 @media (max-width: 960px) {
   .eo-nav__links { display: none; }
   .eo-nav__burger { display: inline-flex; }
@@ -237,8 +254,9 @@ onUnmounted(() => {
 @media (max-width: 640px) {
   .eo-nav { padding: 12px 0; }
   .eo-nav__inner { gap: 12px; }
+  .eo-nav__logo { height: 40px; }
   .eo-nav__title { font-size: 15px; }
-  .eo-nav__brand { min-width: 0; }
+  .eo-nav__brand { min-width: 0; gap: 8px; }
   .eo-nav__mobile a { font-size: 15px; }
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <main>
     <HeroSection />
+    <TrustSection />
     <FeaturesSection />
     <AboutSection />
     <ApplicationsSection />
@@ -15,6 +16,7 @@
 import { onMounted, onUnmounted, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import HeroSection from '@/components/sections/HeroSection.vue'
+import TrustSection from '@/components/sections/TrustSection.vue'
 import FeaturesSection from '@/components/sections/FeaturesSection.vue'
 import AboutSection from '@/components/sections/AboutSection.vue'
 import ApplicationsSection from '@/components/sections/ApplicationsSection.vue'

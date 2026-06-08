@@ -98,7 +98,7 @@ const filteredArticles = computed(() => {
 
 <style scoped>
 .eo-articles {
-  padding-top: clamp(32px, 4vw, 56px);
+  padding-top: clamp(96px, 12vw, 128px);
   padding-bottom: clamp(32px, 4vw, 56px);
 }
 .eo-articles__head {

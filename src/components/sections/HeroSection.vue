@@ -14,12 +14,12 @@
 
         <h1 class="eo-hero__title">
           Природная сила для <br>
-          <span class="eo-hero__grad">вашего урожая</span>
+          <span class="eo-hero__grad">Вашего урожая</span>
         </h1>
 
         <p class="eo-hero__lead">
-          Сапропель — уникальное органическое удобрение из донных отложений пресноводных озёр.
-          Улучшает структуру почвы, даёт прирост урожая от <strong>40% до 120%</strong> и обеспечивает до <strong>60%</strong> прирост массы в животноводстве.
+          Сапропель — уникальное органическое удобрение из донных отложений пресноводного озера Минзелинское Новосибирской области, возрастом более 6000 лет.
+          Улучшает структуру почвы, даёт прирост урожая от <strong>40% до 120%</strong> и обеспечивает до <strong>60%</strong> прироста массы в животноводстве.
         </p>
 
         <div class="eo-hero__actions">
@@ -51,7 +51,7 @@
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.93-6.5 17.64-8.2 17.04Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
           </div>
           <h3>Длительное действие</h3>
-          <p>Питает почву и растения до 10 лет</p>
+          <p>Питает почву и растения от 3 до 5 лет</p>
         </div>
       </div>
     </div>
@@ -88,10 +88,10 @@ function scrollTo(id) {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.55) 50%, rgba(246, 248, 251, 0.92)),
-    radial-gradient(ellipse at 50% 40%, rgba(255, 255, 255, 0.35), transparent 60%);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.42) 50%, rgba(246, 248, 251, 0.85)),
+    radial-gradient(ellipse at 50% 40%, rgba(255, 255, 255, 0.25), transparent 60%);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
 }
 .eo-hero__inner {
   position: relative;
@@ -140,7 +140,7 @@ function scrollTo(id) {
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .eo-hero__grad {
-  background: linear-gradient(90deg, #004225, #454545);
+  background: linear-gradient(120deg, #004225 0%, #047857 45%, #059669 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

@@ -10,7 +10,7 @@
             <h2>Научные статьи</h2>
           </header>
           <ul class="eo-resources__list">
-            <li v-for="(art, i) in scienceArticles" :key="art.href" class="eo-reveal" :style="`--eo-delay: ${i * 80}ms`">
+            <li v-for="(art, i) in visibleArticles" :key="art.href" class="eo-reveal" :style="`--eo-delay: ${i * 80}ms`">
               <a :href="art.href" target="_blank" rel="noopener" class="eo-res-card eo-res-card--article">
                 <div>
                   <span class="eo-res-card__source">{{ art.source }}</span>
@@ -20,6 +20,10 @@
               </a>
             </li>
           </ul>
+          <button v-if="scienceArticles.length > MAX_VISIBLE" type="button" class="eo-resources__more" @click="showAllArticles = !showAllArticles">
+            <span>{{ showAllArticles ? 'Свернуть' : `Показать все статьи (${scienceArticles.length})` }}</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" :class="{ 'eo-resources__more-icon--open': showAllArticles }"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
         </div>
 
         <div>
@@ -30,7 +34,7 @@
             <h2>Документы и сертификаты</h2>
           </header>
           <ul class="eo-resources__list">
-            <li v-for="(doc, i) in documents" :key="doc.file" class="eo-reveal" :style="`--eo-delay: ${i * 80}ms`">
+            <li v-for="(doc, i) in visibleDocs" :key="doc.file" class="eo-reveal" :style="`--eo-delay: ${i * 80}ms`">
               <a
                 href="#"
                 class="eo-res-card eo-res-card--doc"
@@ -41,6 +45,10 @@
               </a>
             </li>
           </ul>
+          <button v-if="documents.length > MAX_VISIBLE" type="button" class="eo-resources__more" @click="showAllDocs = !showAllDocs">
+            <span>{{ showAllDocs ? 'Свернуть' : `Показать все документы (${documents.length})` }}</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" :class="{ 'eo-resources__more-icon--open': showAllDocs }"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -77,7 +85,9 @@
 </template>
 
 <script setup>
-import { ref, watch, nextTick } from 'vue'
+import { ref, computed, nextTick } from 'vue'
+
+const MAX_VISIBLE = 4
 
 const scienceArticles = [
   {
@@ -106,9 +116,13 @@ const documents = [
   { title: 'Протокол испытаний № 34680-МС-2024 от 11.12.2024', file: '/documents/Протокол испытаний № 34680-МС-2024 от 11.12.2024.pdf' },
   { title: 'Лицензия на пользование недрами', file: '/documents/Лицензия_на_пользование_недрами_№НОВ_80199_от_02_12_16г.pdf' },
   { title: 'Сертификат соответствия от 16.11.2016 г.', file: '/documents/Сертификат соответствия от 16.11.2016 г..pdf' },
-  { title: 'Сертификат соответствия от 11.12.2024 г.', file: '/documents/Сертификат соответствия от 11.12.2024 г..pdf' },
-  { title: 'Полный отчёт разведки сапропеля Минзелинское, 1964 г.', file: '/documents/Полный отчет разведки сапропеля Минзелинское 1964 год.pdf' }
+  { title: 'Сертификат соответствия от 11.12.2024 г.', file: '/documents/Сертификат соответствия от 11.12.2024 г..pdf' }
 ]
+
+const showAllArticles = ref(false)
+const showAllDocs = ref(false)
+const visibleArticles = computed(() => showAllArticles.value ? scienceArticles : scienceArticles.slice(0, MAX_VISIBLE))
+const visibleDocs = computed(() => showAllDocs.value ? documents : documents.slice(0, MAX_VISIBLE))
 
 const modalOpen = ref(false)
 const activeDoc = ref(null)
@@ -239,6 +253,25 @@ function onIframeError() {
 }
 .eo-res-card--doc h3 { color: var(--eo-text); font-weight: 500; font-size: 16px; }
 .eo-res-card svg { color: var(--eo-text-dim); flex-shrink: 0; transition: color 0.2s; }
+.eo-resources__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--eo-border-strong);
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--eo-accent-deep);
+  font-family: var(--eo-font);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.eo-resources__more:hover { background: rgba(255, 255, 255, 0.95); border-color: rgba(0, 66, 37, 0.45); transform: translateY(-1px); }
+.eo-resources__more svg { transition: transform 0.3s; }
+.eo-resources__more-icon--open { transform: rotate(180deg); }
 
 /* Modal */
 .eo-doc-modal {

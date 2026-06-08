@@ -9,11 +9,21 @@
       </div>
 
       <div class="eo-features__grid">
-        <article v-for="(f, i) in features" :key="f.title" class="eo-feature eo-reveal" :style="`--eo-delay: ${i * 80}ms`">
+        <router-link
+          v-for="(f, i) in features"
+          :key="f.title"
+          :to="f.link"
+          class="eo-feature eo-reveal"
+          :style="`--eo-delay: ${i * 80}ms`"
+        >
           <div class="eo-feature__icon" v-html="f.icon"></div>
           <h3>{{ f.title }}</h3>
           <p>{{ f.desc }}</p>
-        </article>
+          <span class="eo-feature__more">
+            Читать статью
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </router-link>
       </div>
     </div>
   </section>
@@ -24,31 +34,37 @@ const features = [
   {
     title: 'Повышение плодородия',
     desc: 'Насыщает почву полезными веществами (азот, фосфор, кальций, гумус). Делает её рыхлой, улучшает воздухо- и влагопроницаемость.',
+    link: '/articles/guminovye-kisloty',
     icon: `<svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9.1 3.3 0 4.3-.5 1.1-.6 1.9-1.8 2.5-3.5-2.3-.4-3.7-.2-4.8.5-.3.2-.6.5-.9.8Z"/></svg>`
   },
   {
     title: 'Улучшение структуры',
     desc: 'Восстанавливает истощённые земли, формируя плодородный слой. Помогает удерживать влагу в засушливые периоды.',
+    link: '/articles/sapropel-sostav-i-svoistva',
     icon: `<svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>`
   },
   {
     title: '100% экологичность',
     desc: 'Чистый продукт без химии. В отличие от навоза не содержит семян сорняков и опасных микроорганизмов.',
+    link: '/articles/primenenie-v-ogorode',
     icon: `<svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>`
   },
   {
     title: 'Длительное действие',
-    desc: 'Работает до 10 лет. Питательные вещества высвобождаются постепенно, а избыток не губителен для растений.',
+    desc: 'Работает от 3 до 5 лет. Питательные вещества высвобождаются постепенно, а избыток не губителен для растений.',
+    link: '/articles/keis-urozhainost-kartofelya',
     icon: `<svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`
   },
   {
     title: 'Защита от токсинов',
     desc: 'Уменьшает негативные последствия на почвах, загрязнённых тяжёлыми металлами. Ил связывает вредные вещества.',
+    link: '/articles/guminovye-kisloty',
     icon: `<svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.5.5 0 0 1-.96 0L9.24 3.18a.5.5 0 0 0-.96 0l-2.35 8.36A2 2 0 0 1 4 13H2"/></svg>`
   },
   {
     title: 'Целебные свойства',
-    desc: 'Содержит природные антибиотики, нейтрализует патогенные бактерии. Широкий спектр лечебных свойств для медицины.',
+    desc: 'Содержит природные антибиотики, нейтрализует патогенные бактерии. Обладает широким спектром лечебных свойств, используемых в медицине.',
+    link: '/articles/sapropel-sostav-i-svoistva',
     icon: `<svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="M9 12h.01"/><path d="M15 12h.01"/><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"/></svg>`
   }
 ]
@@ -79,6 +95,9 @@ const features = [
   gap: 24px;
 }
 .eo-feature {
+  display: block;
+  text-decoration: none;
+  color: inherit;
   position: relative;
   padding: 32px;
   border-radius: var(--eo-radius-lg);
@@ -111,40 +130,29 @@ const features = [
 }
 .eo-feature__icon {
   position: relative;
-  width: 80px;
-  height: 80px;
-  margin-bottom: 28px;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--eo-accent-deep);
-  transition: color 0.4s, transform 0.4s;
-}
-.eo-feature__icon::before,
-.eo-feature__icon::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  will-change: border-radius, transform;
-}
-.eo-feature__icon::before {
-  background: radial-gradient(circle at 50% 50%, rgba(4, 120, 87, 0.55), rgba(4, 120, 87, 0.25) 60%, transparent 80%);
-  filter: blur(14px);
-  transform: scale(1.15);
-  animation: eoBlobA 10s linear infinite;
-}
-.eo-feature__icon::after {
-  background: linear-gradient(40deg, #ffffff, #EAF4FF);
-  border: 1px solid rgba(4, 120, 87, 0.30);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 6px 18px rgba(4, 120, 87, 0.18);
-  animation: eoBlobB 12s linear infinite;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(236, 253, 245, 0.8));
+  border: 1px solid rgba(4, 120, 87, 0.20);
+  box-shadow: 0 4px 16px rgba(4, 120, 87, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: color 0.3s, transform 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
 :deep(.eo-feature__icon svg) {
   position: relative;
   z-index: 1;
 }
-.eo-feature:hover .eo-feature__icon { color: var(--eo-amber); transform: scale(1.1); }
-.eo-feature:hover .eo-feature__icon::after { border-color: rgba(0, 66, 37, 0.55); }
+.eo-feature:hover .eo-feature__icon {
+  color: var(--eo-accent-hover);
+  transform: scale(1.08);
+  box-shadow: 0 8px 24px rgba(4, 120, 87, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  border-color: rgba(4, 120, 87, 0.40);
+}
 .eo-feature h3 {
   color: var(--eo-accent-deep);
   font-size: 22px;
@@ -163,16 +171,30 @@ const features = [
   transition: color 0.3s;
 }
 .eo-feature:hover p { color: var(--eo-text); }
-
-@keyframes eoBlobA {
-  0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: rotate(0); }
-  33%      { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: rotate(120deg); }
-  66%      { border-radius: 50% 50% 60% 40% / 40% 60% 50% 60%; transform: rotate(240deg); }
+.eo-feature__more {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--eo-accent-deep);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s, transform 0.3s, gap 0.3s;
 }
-@keyframes eoBlobB {
-  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: rotate(360deg); }
-  33%      { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: rotate(240deg); }
-  66%      { border-radius: 50% 50% 60% 40% / 40% 60% 50% 60%; transform: rotate(120deg); }
+.eo-feature__more svg { transition: transform 0.3s; }
+.eo-feature:hover .eo-feature__more { opacity: 1; transform: translateY(0); }
+.eo-feature:hover .eo-feature__more svg { transform: translateX(3px); }
+.eo-feature:focus-visible {
+  outline: 2px solid var(--eo-accent);
+  outline-offset: 3px;
+}
+.eo-feature:focus-visible .eo-feature__more { opacity: 1; transform: translateY(0); }
+@media (hover: none) {
+  .eo-feature__more { opacity: 1; transform: none; }
 }
 
 @media (max-width: 960px) {
@@ -182,7 +204,7 @@ const features = [
 @media (max-width: 640px) {
   .eo-features__grid { gap: 14px; }
   .eo-feature { padding: 20px; }
-  .eo-feature__icon { width: 64px; height: 64px; margin-bottom: 18px; }
+  .eo-feature__icon { width: 60px; height: 60px; margin-bottom: 16px; border-radius: 16px; }
   .eo-feature h3 { font-size: 18px; }
 }
 </style>

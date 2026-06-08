@@ -7,7 +7,7 @@
     <div class="eo-wrap eo-contact__inner">
       <div class="eo-contact__info eo-reveal">
         <h2>Свяжитесь с нами</h2>
-        <p class="eo-contact__lead">Оставьте заявку, и мы свяжемся с вами для обсуждения деталей сотрудничества и поставок сапропеля.</p>
+        <p class="eo-contact__lead">Оставьте заявку, и мы свяжемся с Вами для обсуждения деталей сотрудничества и поставок сапропеля.</p>
 
         <div class="eo-contact__row">
           <span class="eo-contact__icon">
@@ -35,7 +35,17 @@
           </span>
           <div>
             <span class="eo-contact__label">Офис</span>
-            <p class="eo-contact__address">630008, Россия, Новосибирская обл., г. Новосибирск, ул. Лескова, 15</p>
+            <p class="eo-contact__address">630008, Россия, Новосибирская обл., г. Новосибирск,<br>ул. Лескова, дом 15</p>
+          </div>
+        </div>
+
+        <div class="eo-contact__row">
+          <span class="eo-contact__icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h20l-2 4H4z"/><path d="M5 11v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8"/><path d="M9 21v-5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5"/><path d="M2 7l1.5-3a1 1 0 0 1 .9-.6h15.2a1 1 0 0 1 .9.6L22 7"/></svg>
+          </span>
+          <div>
+            <span class="eo-contact__label">Где купить офлайн</span>
+            <p class="eo-contact__address">Продукция «Эко Органика» представлена в розничных сетях «Колорлон», «Сибирский Сад», «Цветущий сад» и других магазинах.</p>
           </div>
         </div>
       </div>
@@ -43,28 +53,62 @@
       <form class="eo-contact__form eo-reveal" style="--eo-delay: 120ms" @submit.prevent="submitForm" novalidate>
         <h3>Оставить заявку</h3>
 
-        <label class="eo-field">
-          <span>Ваше имя</span>
-          <input type="text" v-model="form.name" placeholder="Иван Иванов" required>
-        </label>
+        <div class="eo-field" :class="{ 'eo-field--error': errors.name }">
+          <label for="contact-name">Ваше имя <span class="eo-field__req" aria-hidden="true">*</span></label>
+          <input
+            id="contact-name"
+            type="text"
+            v-model="form.name"
+            placeholder="Иван Иванов"
+            autocomplete="name"
+            @blur="validateField('name')"
+            :aria-invalid="errors.name ? 'true' : 'false'"
+            :aria-describedby="errors.name ? 'err-name' : undefined"
+          >
+          <span v-if="errors.name" id="err-name" class="eo-field__msg" role="alert">{{ errors.name }}</span>
+        </div>
 
-        <label class="eo-field">
-          <span>Телефон</span>
-          <input type="tel" v-model="form.phone" placeholder="+7 (___) ___-__-__" inputmode="tel" autocomplete="tel" required>
-        </label>
+        <div class="eo-field" :class="{ 'eo-field--error': errors.phone }">
+          <label for="contact-phone">Телефон <span class="eo-field__req" aria-hidden="true">*</span></label>
+          <input
+            id="contact-phone"
+            type="tel"
+            v-model="form.phone"
+            placeholder="+7 (___) ___-__-__"
+            inputmode="tel"
+            autocomplete="tel"
+            @blur="validateField('phone')"
+            :aria-invalid="errors.phone ? 'true' : 'false'"
+            :aria-describedby="errors.phone ? 'err-phone' : undefined"
+          >
+          <span v-if="errors.phone" id="err-phone" class="eo-field__msg" role="alert">{{ errors.phone }}</span>
+        </div>
 
-        <label class="eo-field">
-          <span>Email</span>
-          <input type="email" v-model="form.email" placeholder="example@mail.ru">
-        </label>
+        <div class="eo-field" :class="{ 'eo-field--error': errors.email }">
+          <label for="contact-email">Email <span class="eo-field__optional">(необязательно)</span></label>
+          <input
+            id="contact-email"
+            type="email"
+            v-model="form.email"
+            placeholder="example@mail.ru"
+            autocomplete="email"
+            @blur="validateField('email')"
+            :aria-invalid="errors.email ? 'true' : 'false'"
+            :aria-describedby="errors.email ? 'err-email' : undefined"
+          >
+          <span v-if="errors.email" id="err-email" class="eo-field__msg" role="alert">{{ errors.email }}</span>
+        </div>
 
         <button type="submit" class="eo-btn eo-btn--primary eo-btn--block" :disabled="submitting">
           <span>{{ submitting ? 'Отправляем…' : 'Отправить заявку' }}</span>
           <svg v-if="!submitting" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
         </button>
 
-        <p class="eo-contact__policy">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.</p>
-        <p v-if="success" class="eo-contact__success">Спасибо! Мы свяжемся с вами в ближайшее время.</p>
+        <p class="eo-contact__policy">Нажимая кнопку, Вы соглашаетесь с <router-link to="/privacy-policy">политикой конфиденциальности</router-link>.</p>
+        <p v-if="success" class="eo-contact__success" role="status">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+          Спасибо! Мы свяжемся с вами в ближайшее время.
+        </p>
       </form>
     </div>
   </section>
@@ -74,10 +118,36 @@
 import { ref, reactive } from 'vue'
 
 const form = reactive({ name: '', phone: '', email: '' })
+const errors = reactive({ name: '', phone: '', email: '' })
 const submitting = ref(false)
 const success = ref(false)
 
+const phoneRe = /^[\d\s\+\-\(\)]{7,20}$/
+const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+function validateField(field) {
+  if (field === 'name') {
+    errors.name = form.name.trim().length < 2 ? 'Введите имя (минимум 2 символа)' : ''
+  }
+  if (field === 'phone') {
+    errors.phone = !phoneRe.test(form.phone.trim()) ? 'Введите корректный номер телефона' : ''
+  }
+  if (field === 'email' && form.email.trim()) {
+    errors.email = !emailRe.test(form.email.trim()) ? 'Введите корректный email' : ''
+  } else if (field === 'email') {
+    errors.email = ''
+  }
+}
+
+function validateAll() {
+  validateField('name')
+  validateField('phone')
+  validateField('email')
+  return !errors.name && !errors.phone && !errors.email
+}
+
 async function submitForm() {
+  if (!validateAll()) return
   submitting.value = true
   await new Promise((r) => setTimeout(r, 400))
   submitting.value = false
@@ -85,6 +155,9 @@ async function submitForm() {
   form.name = ''
   form.phone = ''
   form.email = ''
+  errors.name = ''
+  errors.phone = ''
+  errors.email = ''
   setTimeout(() => { success.value = false }, 6000)
 }
 </script>
@@ -156,7 +229,9 @@ async function submitForm() {
 }
 .eo-contact__form h3 { color: var(--eo-text); font-size: 24px; font-weight: 700; margin: 0 0 28px; }
 .eo-field { display: block; margin-bottom: 20px; }
-.eo-field > span { display: block; font-size: 14px; font-weight: 500; color: var(--eo-text); margin-bottom: 8px; }
+.eo-field label { display: block; font-size: 14px; font-weight: 500; color: var(--eo-text); margin-bottom: 8px; }
+.eo-field__req { color: #dc2626; margin-left: 2px; }
+.eo-field__optional { font-size: 12px; font-weight: 400; color: var(--eo-text-dim); margin-left: 4px; }
 .eo-field input {
   width: 100%;
   padding: 14px 18px;
@@ -175,16 +250,37 @@ async function submitForm() {
   box-shadow: 0 0 0 2px var(--eo-accent);
   background: #ffffff;
 }
+.eo-field--error input {
+  border-color: #fca5a5;
+  background: rgba(254, 242, 242, 0.9);
+}
+.eo-field--error input:focus {
+  box-shadow: 0 0 0 2px #ef4444;
+  border-color: transparent;
+}
+.eo-field__msg {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #dc2626;
+  padding-left: 2px;
+}
 .eo-contact__policy { color: var(--eo-text-dim); font-size: 12px; text-align: center; margin: 16px 0 0; }
 .eo-contact__success {
   margin: 20px 0 0;
   padding: 14px 18px;
   border-radius: 12px;
-  background: rgba(0, 66, 37, 0.12);
-  border: 1px solid rgba(0, 66, 37, 0.4);
+  background: rgba(0, 66, 37, 0.10);
+  border: 1px solid rgba(0, 66, 37, 0.35);
   color: var(--eo-accent-deep);
   text-align: center;
   font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 button:disabled { opacity: 0.7; cursor: not-allowed; transform: none !important; }
 @media (max-width: 960px) {

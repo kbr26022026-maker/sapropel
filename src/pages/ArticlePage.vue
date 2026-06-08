@@ -4,11 +4,21 @@
       <article class="eo-section eo-article" itemscope itemtype="https://schema.org/BlogPosting">
         <div class="eo-wrap">
           <nav class="eo-article__crumbs eo-reveal" aria-label="Хлебные крошки">
-            <router-link to="/">Главная</router-link>
-            <span aria-hidden="true">/</span>
-            <router-link to="/articles">Статьи</router-link>
-            <span aria-hidden="true">/</span>
-            <span aria-current="page">{{ article.title }}</span>
+            <router-link to="/" class="eo-article__crumb-link">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              Главная
+            </router-link>
+            <span class="eo-article__crumb-sep" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </span>
+            <router-link to="/articles" class="eo-article__crumb-link">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              Блог
+            </router-link>
+            <span class="eo-article__crumb-sep" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </span>
+            <span class="eo-article__crumb-current" aria-current="page">{{ article.title }}</span>
           </nav>
 
           <header class="eo-article__head eo-reveal">
@@ -113,16 +123,49 @@ watch(() => route.params.slug, async () => {
 .eo-article { padding-top: clamp(24px, 6vw, 72px); }
 .eo-article__crumbs {
   font-size: 13px;
-  color: var(--eo-text-dim);
   margin-bottom: 28px;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 4px;
 }
-.eo-article__crumbs a { color: var(--eo-text-muted); transition: color 0.2s; }
-.eo-article__crumbs a:hover { color: var(--eo-accent-deep); }
-.eo-article__crumbs [aria-current="page"] { color: var(--eo-text); }
+.eo-article__crumb-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--eo-border);
+  color: var(--eo-text-muted);
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+  backdrop-filter: blur(8px);
+  min-height: 32px;
+}
+.eo-article__crumb-link:hover {
+  background: var(--eo-accent-soft);
+  color: var(--eo-accent-deep);
+  border-color: rgba(16, 185, 129, 0.35);
+  transform: translateY(-1px);
+}
+.eo-article__crumb-sep {
+  display: inline-flex;
+  align-items: center;
+  color: var(--eo-text-dim);
+  padding: 0 2px;
+}
+.eo-article__crumb-current {
+  padding: 6px 12px;
+  color: var(--eo-text-dim);
+  font-size: 13px;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .eo-article__head { max-width: 820px; margin: 0 auto 36px; }
 .eo-article__cat {
   display: inline-block;
@@ -226,7 +269,9 @@ watch(() => route.params.slug, async () => {
 
 @media (max-width: 640px) {
   .eo-article { padding-top: 24px; }
-  .eo-article__crumbs { margin-bottom: 18px; gap: 4px; font-size: 13px; }
+  .eo-article__crumbs { margin-bottom: 18px; gap: 3px; }
+  .eo-article__crumb-link { padding: 5px 10px; font-size: 12px; }
+  .eo-article__crumb-current { max-width: 140px; font-size: 12px; padding: 5px 8px; }
   .eo-article__head { margin-bottom: 24px; }
   .eo-article__cat { font-size: 11px; padding: 5px 10px; margin-bottom: 14px; }
   .eo-article__title { font-size: clamp(24px, 7vw, 32px); margin-bottom: 16px; }

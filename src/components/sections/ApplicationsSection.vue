@@ -116,55 +116,35 @@ const apps = [
 .eo-app:hover .eo-app__orb { background: rgba(0, 66, 37, 0.45); }
 .eo-app__icon {
   position: relative;
-  width: 80px; height: 80px;
-  margin-bottom: 28px;
+  width: 72px; height: 72px;
+  margin-bottom: 24px;
 }
 .eo-app__icon-core {
   position: absolute;
-  inset: 12px;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ffffff;
-  border: 1px solid rgba(0, 66, 37, 0.35);
-  border-radius: 50%;
-  box-shadow: 0 0 15px rgba(0, 66, 37, 0.12);
-  transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(236, 253, 245, 0.85));
+  border: 1px solid rgba(0, 66, 37, 0.22);
+  border-radius: 20px;
+  box-shadow: 0 4px 14px rgba(0, 66, 37, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
   will-change: transform;
   overflow: hidden;
 }
-.eo-app__icon::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: 2px dashed rgba(0, 66, 37, 0.35);
-  border-radius: 50%;
-  animation: eoSpin 20s linear infinite;
-  transition: border-color 0.4s;
-}
-.eo-app__icon::after {
-  content: '';
-  position: absolute;
-  inset: 6px;
-  border: 1px dotted rgba(0, 66, 37, 0.45);
-  border-radius: 50%;
-  animation: eoSpin 15s linear infinite reverse;
-  transition: border-color 0.4s;
-}
-.eo-app:hover .eo-app__icon::before { border-color: rgba(0, 66, 37, 0.7); }
-.eo-app:hover .eo-app__icon::after  { border-color: rgba(0, 66, 37, 0.85); }
 .eo-app:hover .eo-app__icon-core {
-  border-color: var(--eo-accent);
-  box-shadow: 0 0 25px rgba(0, 66, 37, 0.35);
-  transform: scale(1.1);
+  border-color: rgba(4, 120, 87, 0.45);
+  box-shadow: 0 8px 22px rgba(0, 66, 37, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transform: scale(1.08);
 }
 :deep(.eo-app__icon-core > svg) {
-  width: 24px; height: 24px;
+  width: 26px; height: 26px;
   color: var(--eo-accent-deep);
   flex: 0 0 auto;
-  transition: color 0.4s, transform 0.4s;
+  transition: color 0.3s, transform 0.3s;
 }
-.eo-app:hover :deep(.eo-app__icon-core > svg) { color: var(--eo-accent-hover); transform: scale(1.1); }
+.eo-app:hover :deep(.eo-app__icon-core > svg) { color: var(--eo-accent-hover); transform: scale(1.08); }
 .eo-app h3 {
   position: relative;
   z-index: 1;
@@ -185,14 +165,11 @@ const apps = [
 }
 .eo-app:hover p { color: var(--eo-text); }
 
-@keyframes eoSpin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
-
 @media (max-width: 640px) {
   .eo-apps__head { margin-bottom: 32px; padding: 0; }
   .eo-apps__grid { grid-template-columns: 1fr; gap: 14px; }
   .eo-app { padding: 20px; }
-  .eo-app__orb { top: -56px; right: -56px; width: 120px; height: 120px; }
-  .eo-app__icon { width: 64px; height: 64px; margin-bottom: 18px; }
+  .eo-app__icon { width: 60px; height: 60px; margin-bottom: 16px; }
   .eo-app h3 { font-size: 17px; }
 }
 @media (min-width: 641px) and (max-width: 960px) {
