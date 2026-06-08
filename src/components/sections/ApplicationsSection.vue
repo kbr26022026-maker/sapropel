@@ -8,7 +8,6 @@
 
       <div class="eo-apps__grid">
         <article v-for="(app, i) in apps" :key="app.title" class="eo-app eo-reveal" :style="`--eo-delay: ${i * 80}ms`">
-          <div class="eo-app__orb"></div>
           <div class="eo-app__icon">
             <span class="eo-app__icon-core" v-html="app.icon"></span>
           </div>
@@ -87,6 +86,8 @@ const apps = [
 }
 .eo-app {
   position: relative;
+  display: flex;
+  flex-direction: column;
   padding: 32px;
   border-radius: var(--eo-radius-lg);
   background: rgba(255, 255, 255, 0.55);
@@ -103,17 +104,6 @@ const apps = [
   transform: translateY(-5px);
   box-shadow: 0 18px 45px rgba(69, 69, 69, 0.12);
 }
-.eo-app__orb {
-  position: absolute;
-  top: -80px; right: -80px;
-  width: 160px; height: 160px;
-  border-radius: 50%;
-  background: rgba(0, 66, 37, 0.25);
-  filter: blur(50px);
-  transition: background 0.4s;
-  pointer-events: none;
-}
-.eo-app:hover .eo-app__orb { background: rgba(0, 66, 37, 0.45); }
 .eo-app__icon {
   position: relative;
   width: 72px; height: 72px;
@@ -152,6 +142,9 @@ const apps = [
   font-size: 20px;
   font-weight: 700;
   margin: 0 0 10px;
+  min-height: 2.5em;
+  display: flex;
+  align-items: flex-start;
   transition: color 0.3s;
 }
 .eo-app p {
