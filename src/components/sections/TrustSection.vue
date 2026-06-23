@@ -30,11 +30,11 @@ const statsEl = ref(null)
 const stats = reactive([
   {
     icon: `<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 6v6l4 2"/></svg>`,
-    target: 10000,
+    target: 6000,
     live: '0',
-    suffix: ' лет',
+    suffix: '+ лет',
     label: 'Возраст залежей озера',
-    format: (v) => v >= 10000 ? '10 000' : v.toLocaleString('ru')
+    format: (v) => v >= 6000 ? '6 000' : v.toLocaleString('ru')
   },
   {
     icon: `<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9.1 3.3 0 4.3-.5 1.1-.6 1.9-1.8 2.5-3.5-2.3-.4-3.7-.2-4.8.5-.3.2-.6.5-.9.8Z"/></svg>`,
@@ -54,7 +54,7 @@ const stats = reactive([
   },
   {
     icon: `<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
-    target: 10,
+    target: 5,
     live: '0',
     suffix: ' лет',
     label: 'Длительность действия в почве',

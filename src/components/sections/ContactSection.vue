@@ -53,6 +53,12 @@
       <form class="eo-contact__form eo-reveal" style="--eo-delay: 120ms" @submit.prevent="submitForm" novalidate>
         <h3>Оставить заявку</h3>
 
+        <!-- Honeypot: hidden from users, catches spam bots -->
+        <div class="eo-hp" aria-hidden="true">
+          <label for="contact-company">Компания</label>
+          <input id="contact-company" type="text" v-model="form.company" tabindex="-1" autocomplete="off">
+        </div>
+
         <div class="eo-field" :class="{ 'eo-field--error': errors.name }">
           <label for="contact-name">Ваше имя <span class="eo-field__req" aria-hidden="true">*</span></label>
           <input
@@ -105,6 +111,10 @@
         </button>
 
         <p class="eo-contact__policy">Нажимая кнопку, Вы соглашаетесь с <router-link to="/privacy-policy">политикой конфиденциальности</router-link>.</p>
+        <p v-if="submitError" class="eo-contact__error" role="alert">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          {{ submitError }}
+        </p>
         <p v-if="success" class="eo-contact__success" role="status">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
           Спасибо! Мы свяжемся с вами в ближайшее время.
@@ -117,10 +127,15 @@
 <script setup>
 import { ref, reactive } from 'vue'
 
-const form = reactive({ name: '', phone: '', email: '' })
+// Formspree endpoint. Create a form at https://formspree.io (delivers to
+// ecoorganica54@mail.ru) and put its URL in .env.local as VITE_FORMSPREE_ENDPOINT.
+const FORM_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT || ''
+
+const form = reactive({ name: '', phone: '', email: '', company: '' })
 const errors = reactive({ name: '', phone: '', email: '' })
 const submitting = ref(false)
 const success = ref(false)
+const submitError = ref('')
 
 const phoneRe = /^[\d\s\+\-\(\)]{7,20}$/
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -146,19 +161,48 @@ function validateAll() {
   return !errors.name && !errors.phone && !errors.email
 }
 
-async function submitForm() {
-  if (!validateAll()) return
-  submitting.value = true
-  await new Promise((r) => setTimeout(r, 400))
-  submitting.value = false
-  success.value = true
+function resetForm() {
   form.name = ''
   form.phone = ''
   form.email = ''
+  form.company = ''
   errors.name = ''
   errors.phone = ''
   errors.email = ''
-  setTimeout(() => { success.value = false }, 6000)
+}
+
+async function submitForm() {
+  submitError.value = ''
+  if (!validateAll()) return
+  // Honeypot: bots fill hidden fields — silently treat as success.
+  if (form.company) { success.value = true; resetForm(); return }
+
+  if (!FORM_ENDPOINT) {
+    submitError.value = 'Форма ещё не подключена к получателю. Позвоните по телефону +7 (913) 207-78-78 или напишите на ecoorganica54@mail.ru.'
+    return
+  }
+
+  submitting.value = true
+  try {
+    const res = await fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: form.name.trim(),
+        phone: form.phone.trim(),
+        email: form.email.trim(),
+        _subject: 'Новая заявка с сайта «Эко Органика»'
+      })
+    })
+    if (!res.ok) throw new Error('Request failed: ' + res.status)
+    success.value = true
+    resetForm()
+    setTimeout(() => { success.value = false }, 8000)
+  } catch (e) {
+    submitError.value = 'Не удалось отправить заявку. Проверьте подключение к интернету и попробуйте ещё раз — или позвоните нам по телефону +7 (913) 207-78-78.'
+  } finally {
+    submitting.value = false
+  }
 }
 </script>
 
@@ -225,7 +269,7 @@ async function submitForm() {
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border: 1px solid var(--eo-border);
-  box-shadow: 0 30px 80px rgba(69, 69, 69, 0.12);
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.12);
 }
 .eo-contact__form h3 { color: var(--eo-text); font-size: 24px; font-weight: 700; margin: 0 0 28px; }
 .eo-field { display: block; margin-bottom: 20px; }
@@ -266,7 +310,24 @@ async function submitForm() {
   color: #dc2626;
   padding-left: 2px;
 }
+.eo-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .eo-contact__policy { color: var(--eo-text-dim); font-size: 12px; text-align: center; margin: 16px 0 0; }
+.eo-contact__error {
+  margin: 16px 0 0;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: rgba(220, 38, 38, 0.08);
+  border: 1px solid rgba(220, 38, 38, 0.35);
+  color: #b91c1c;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.eo-contact__error svg { flex-shrink: 0; margin-top: 1px; }
 .eo-contact__success {
   margin: 20px 0 0;
   padding: 14px 18px;

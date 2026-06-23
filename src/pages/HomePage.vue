@@ -25,9 +25,12 @@ import ArticleTeaserSection from '@/components/sections/ArticleTeaserSection.vue
 import ResourcesSection from '@/components/sections/ResourcesSection.vue'
 import ContactSection from '@/components/sections/ContactSection.vue'
 import { useReveal } from '@/composables/useReveal.js'
+import { setMeta } from '@/composables/useMeta.js'
 
 const route = useRoute()
 const { refresh } = useReveal()
+
+setMeta({ path: '/' })
 
 onMounted(async () => {
   await nextTick()

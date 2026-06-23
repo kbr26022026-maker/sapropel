@@ -66,12 +66,9 @@
           </section>
         </div>
       </article>
-
-      <!-- JSON-LD schema -->
-      <component :is="'script'" type="application/ld+json">{{ jsonLd }}</component>
     </div>
 
-    <div v-else class="eo-section">
+    <div v-else-if="!loading" class="eo-section">
       <div class="eo-wrap eo-not-found">
         <h1>Статья не найдена</h1>
         <p>Проверьте адрес или вернитесь к <router-link to="/articles">списку статей</router-link>.</p>
@@ -81,41 +78,72 @@
 </template>
 
 <script setup>
-import { computed, onMounted, nextTick, watch } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick, watch, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
-import { getArticleBySlug } from '@/data/articles.js'
+import { fetchArticleBySlug } from '@/sanity/articles.js'
 import { useReveal } from '@/composables/useReveal.js'
+import { setMeta, setJsonLd, removeJsonLd, BASE_URL } from '@/composables/useMeta.js'
 
 const route = useRoute()
 const { refresh } = useReveal()
 
-const article = computed(() => getArticleBySlug(route.params.slug))
+const article = ref(null)
+const loading = ref(true)
 
-const jsonLd = computed(() => {
-  if (!article.value) return '{}'
-  return JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: article.value.title,
-    description: article.value.excerpt,
-    image: article.value.image,
-    datePublished: article.value.date,
-    dateModified: article.value.date,
-    author: { '@type': 'Organization', name: 'Эко Органика' },
-    publisher: { '@type': 'Organization', name: 'Эко Органика' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': `/articles/${article.value.slug}/` }
-  })
-})
-
-onMounted(async () => {
+async function loadArticle() {
+  loading.value = true
+  try {
+    article.value = await fetchArticleBySlug(route.params.slug)
+  } catch (e) {
+    console.error('Не удалось загрузить статью', e)
+    article.value = null
+  } finally {
+    loading.value = false
+  }
   await nextTick()
   refresh()
+}
+
+watchEffect(() => {
+  if (loading.value) return
+  const a = article.value
+  if (a) {
+    setMeta({
+      title: a.title,
+      description: a.excerpt,
+      image: a.image,
+      path: `/articles/${a.slug}`,
+      type: 'article'
+    })
+    setJsonLd('eo-article-ld', {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: a.title,
+      description: a.excerpt,
+      image: a.image,
+      datePublished: a.date,
+      dateModified: a.date,
+      author: { '@type': 'Organization', name: 'Эко Органика' },
+      publisher: {
+        '@type': 'Organization',
+        name: 'Эко Органика',
+        logo: { '@type': 'ImageObject', url: `${BASE_URL}/logo.png` }
+      },
+      mainEntityOfPage: { '@type': 'WebPage', '@id': `${BASE_URL}/articles/${a.slug}` }
+    })
+  } else {
+    setMeta({ title: 'Статья не найдена', path: route.fullPath })
+    removeJsonLd('eo-article-ld')
+  }
 })
 
+onMounted(loadArticle)
+
+onUnmounted(() => removeJsonLd('eo-article-ld'))
+
 watch(() => route.params.slug, async () => {
-  await nextTick()
   window.scrollTo({ top: 0 })
-  setTimeout(() => refresh(), 50)
+  await loadArticle()
 })
 </script>
 

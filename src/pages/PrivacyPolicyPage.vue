@@ -99,7 +99,6 @@
           <li>Телефон: <a href="tel:+79132077878">+7 (913) 207-78-78</a></li>
         </ul>
 
-        <p class="privacy__updated">Последнее обновление: {{ lastUpdated }}</p>
       </div>
     </div>
   </main>
@@ -108,8 +107,13 @@
 <script setup>
 import { onMounted, nextTick } from 'vue'
 import { useReveal } from '@/composables/useReveal.js'
+import { setMeta } from '@/composables/useMeta.js'
 
-const lastUpdated = '5 июня 2026 г.'
+setMeta({
+  title: 'Политика конфиденциальности',
+  description: 'Политика обработки персональных данных ООО «Эко Органика» в соответствии с Федеральным законом № 152-ФЗ «О персональных данных».',
+  path: '/privacy-policy'
+})
 
 const { refresh } = useReveal()
 onMounted(async () => { await nextTick(); refresh() })

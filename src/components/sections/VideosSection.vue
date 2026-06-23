@@ -57,7 +57,7 @@ const videos = [
   border: 1px solid var(--eo-border);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 14px 40px rgba(69, 69, 69, 0.10);
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.10);
 }
 @media (min-width: 641px) {
   .eo-video { grid-column: span 6; }

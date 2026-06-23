@@ -47,7 +47,7 @@
           </li>
         </ul>
 
-        <div class="eo-articles__empty" v-else>
+        <div class="eo-articles__empty" v-else-if="loaded">
           В этой категории пока нет материалов. Загляните позже или выберите «Все».
         </div>
       </div>
@@ -58,12 +58,19 @@
 <script setup>
 import { ref, computed, onMounted, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { articles } from '@/data/articles.js'
+import { fetchArticles } from '@/sanity/articles.js'
 import { useReveal } from '@/composables/useReveal.js'
+import { setMeta } from '@/composables/useMeta.js'
 
 const route = useRoute()
 const router = useRouter()
 const { refresh } = useReveal()
+
+setMeta({
+  title: 'Блог: статьи и новости о сапропеле',
+  description: 'Материалы о сапропеле, агрономии и применении органических удобрений: состав, нормы внесения, практические кейсы и новости компании «Эко Органика».',
+  path: '/articles'
+})
 
 const filters = [
   { id: 'all', label: 'Все' },
@@ -74,11 +81,20 @@ const filters = [
 ]
 
 const activeFilter = ref('all')
+const articles = ref([])
+const loaded = ref(false)
 
 onMounted(async () => {
   const cat = route.query.cat
   if (cat && filters.find((f) => f.id === cat)) {
     activeFilter.value = cat
+  }
+  try {
+    articles.value = await fetchArticles()
+  } catch (e) {
+    console.error('Не удалось загрузить список статей', e)
+  } finally {
+    loaded.value = true
   }
   await nextTick()
   refresh()
@@ -91,8 +107,8 @@ function setFilter(id) {
 }
 
 const filteredArticles = computed(() => {
-  if (activeFilter.value === 'all') return articles
-  return articles.filter((a) => a.cat === activeFilter.value)
+  if (activeFilter.value === 'all') return articles.value
+  return articles.value.filter((a) => a.cat === activeFilter.value)
 })
 </script>
 

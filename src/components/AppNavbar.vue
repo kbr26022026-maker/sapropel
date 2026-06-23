@@ -124,7 +124,7 @@ onUnmounted(() => {
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom-color: var(--eo-border);
-  box-shadow: 0 6px 20px rgba(69, 69, 69, 0.08);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
 }
 .eo-nav__inner {
   display: flex;
@@ -221,7 +221,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
 }
-.eo-nav__mobile a:hover { color: var(--eo-accent-hover); background: rgba(69, 69, 69, 0.04); }
+.eo-nav__mobile a:hover { color: var(--eo-accent-hover); background: rgba(15, 23, 42, 0.04); }
 .eo-nav__cta-mobile {
   background: var(--eo-accent-hover);
   color: #fff !important;

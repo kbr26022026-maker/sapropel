@@ -4,3 +4,5 @@
 .vite/
 node_modules/
 dist/
+_internal/
+.DS_Store

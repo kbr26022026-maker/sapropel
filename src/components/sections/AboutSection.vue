@@ -158,7 +158,7 @@ onUnmounted(() => document.body.classList.remove('eo-doc-modal-lock'))
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: var(--eo-radius-lg);
-  box-shadow: 0 20px 50px rgba(69, 69, 69, 0.12);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
 }
 .eo-about__img--offset { margin-top: 32px; }
 .eo-about__img--offset-up { margin-top: -32px; }
@@ -174,7 +174,7 @@ onUnmounted(() => document.body.classList.remove('eo-doc-modal-lock'))
   cursor: zoom-in;
   border-radius: var(--eo-radius-lg);
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(69, 69, 69, 0.12);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
 }
 .eo-about__img-btn img { display: block; transition: transform 0.45s var(--eo-ease); }
 .eo-about__img-btn:hover img,
@@ -304,7 +304,7 @@ onUnmounted(() => document.body.classList.remove('eo-doc-modal-lock'))
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border: 1px solid var(--eo-border);
-  box-shadow: 0 30px 80px rgba(69, 69, 69, 0.10);
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.10);
   overflow: hidden;
 }
 .eo-about__lake-decor {
@@ -347,7 +347,7 @@ onUnmounted(() => document.body.classList.remove('eo-doc-modal-lock'))
   width: 100%;
   border-radius: var(--eo-radius-md);
   border: 4px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 20px 50px rgba(69, 69, 69, 0.15);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.15);
 }
 @media (max-width: 960px) {
   .eo-about__intro { gap: 40px; margin-bottom: 72px; }

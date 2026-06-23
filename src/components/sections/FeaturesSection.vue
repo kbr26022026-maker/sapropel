@@ -105,7 +105,7 @@ const features = [
   border: 1px solid var(--eo-border);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  box-shadow: 0 10px 30px rgba(69, 69, 69, 0.06);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
   transition: background 0.4s, border-color 0.4s, transform 0.4s var(--eo-ease), box-shadow 0.4s;
   overflow: hidden;
 }
@@ -113,7 +113,7 @@ const features = [
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(0, 66, 37, 0) 0%, rgba(69, 69, 69, 0) 100%);
+  background: linear-gradient(135deg, rgba(4, 120, 87, 0) 0%, rgba(16, 185, 129, 0) 100%);
   opacity: 0;
   transition: opacity 0.5s;
   pointer-events: none;
@@ -122,11 +122,11 @@ const features = [
   transform: translateY(-8px);
   background: rgba(255, 255, 255, 0.85);
   border-color: rgba(0, 66, 37, 0.35);
-  box-shadow: 0 20px 50px rgba(69, 69, 69, 0.12);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
 }
 .eo-feature:hover::before {
   opacity: 1;
-  background: linear-gradient(135deg, rgba(0, 66, 37, 0.10), rgba(69, 69, 69, 0.08));
+  background: linear-gradient(135deg, rgba(4, 120, 87, 0.08), rgba(16, 185, 129, 0.05));
 }
 .eo-feature__icon {
   position: relative;

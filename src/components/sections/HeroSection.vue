@@ -111,7 +111,7 @@ function scrollTo(id) {
   border: 1px solid var(--eo-border);
   backdrop-filter: blur(18px) saturate(1.1);
   -webkit-backdrop-filter: blur(18px) saturate(1.1);
-  box-shadow: 0 20px 60px rgba(69, 69, 69, 0.10);
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.10);
 }
 .eo-hero__badge {
   display: inline-flex;
@@ -128,7 +128,7 @@ function scrollTo(id) {
   letter-spacing: 0.1em;
   backdrop-filter: blur(10px);
   margin-bottom: 32px;
-  box-shadow: 0 4px 14px rgba(69, 69, 69, 0.05);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
 }
 .eo-hero__title {
   color: var(--eo-text);
@@ -178,12 +178,12 @@ function scrollTo(id) {
   padding: 28px;
   text-align: left;
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 10px 30px rgba(69, 69, 69, 0.06);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
 }
 .eo-hero__stat:hover {
   background: rgba(255, 255, 255, 0.85);
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(69, 69, 69, 0.1);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.1);
 }
 .eo-hero__icon {
   width: 48px; height: 48px;

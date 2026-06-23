@@ -217,7 +217,7 @@ function onIframeError() {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: var(--eo-text);
-  box-shadow: 0 6px 20px rgba(69, 69, 69, 0.05);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05);
   transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
 }
@@ -225,12 +225,12 @@ function onIframeError() {
 .eo-res-card:hover {
   background: rgba(255, 255, 255, 0.9);
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(69, 69, 69, 0.10);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.10);
 }
 .eo-res-card--article:hover { border-color: rgba(0, 66, 37, 0.55); }
 .eo-res-card--article:hover h3 { color: var(--eo-accent-deep); }
 .eo-res-card--article:hover svg { color: var(--eo-accent-deep); }
-.eo-res-card--doc:hover { border-color: rgba(69, 69, 69, 0.55); }
+.eo-res-card--doc:hover { border-color: rgba(37, 99, 235, 0.45); }
 .eo-res-card--doc:hover h3 { color: var(--eo-blue); }
 .eo-res-card--doc:hover svg { color: var(--eo-blue); }
 .eo-res-card__source {

@@ -94,7 +94,7 @@ const apps = [
   border: 1px solid var(--eo-border);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 10px 30px rgba(69, 69, 69, 0.06);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
   overflow: hidden;
   transition: background 0.4s, border-color 0.4s, transform 0.4s var(--eo-ease), box-shadow 0.4s;
 }
@@ -102,7 +102,7 @@ const apps = [
   background: rgba(255, 255, 255, 0.85);
   border-color: rgba(0, 66, 37, 0.4);
   transform: translateY(-5px);
-  box-shadow: 0 18px 45px rgba(69, 69, 69, 0.12);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
 }
 .eo-app__icon {
   position: relative;

@@ -35,7 +35,18 @@
 </template>
 
 <script setup>
-import { teaserArticles } from '@/data/articles.js'
+import { ref, onMounted } from 'vue'
+import { fetchTeaserArticles } from '@/sanity/articles.js'
+
+const teaserArticles = ref([])
+
+onMounted(async () => {
+  try {
+    teaserArticles.value = await fetchTeaserArticles()
+  } catch (e) {
+    console.error('Не удалось загрузить статьи для тизера', e)
+  }
+})
 </script>
 
 <style scoped>
