@@ -10,9 +10,10 @@ export default defineCliConfig({
   deployment: {
     appId: 'vwe4oq0gl6yxhky7xkptnqri',
     /**
-     * Enable auto-updates for studios.
-     * Learn more at https://www.sanity.io/docs/studio/latest-version-of-sanity#k47faf43faf56
+     * Pin the deployed Studio to the exact version we build & test against.
+     * Auto-updates are disabled to avoid runtime/build version drift (which can
+     * cause a blank Studio). To update: bump deps and run `npm run deploy`.
      */
-    autoUpdates: true,
+    autoUpdates: false,
   },
 })
