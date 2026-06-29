@@ -18,8 +18,7 @@
           rel="noopener noreferrer"
           aria-label="Открыть магазин Эко Органика на Ozon"
         >
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          <span>Ozon</span>
+          <img class="eo-footer__shop-logo" src="/ozon-logo.svg" alt="Ozon" width="73" height="16" />
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="eo-footer__shop-arrow"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
         </a>
         <a
@@ -29,8 +28,7 @@
           rel="noopener noreferrer"
           aria-label="Открыть магазин Эко Органика на Wildberries"
         >
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          <span>Wildberries</span>
+          <img class="eo-footer__shop-logo" src="/wildberries-logo.svg" alt="Wildberries" width="107" height="16" />
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="eo-footer__shop-arrow"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
         </a>
       </div>
@@ -130,6 +128,11 @@ const year = new Date().getFullYear()
   letter-spacing: 0.01em;
   transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
 }
+.eo-footer__shop-logo {
+  display: block;
+  height: 16px;
+  width: auto;
+}
 .eo-footer__shop--ozon {
   border-color: rgba(0, 91, 255, 0.28);
   color: #005BFF;
@@ -140,12 +143,12 @@ const year = new Date().getFullYear()
   transform: translateY(-1px);
 }
 .eo-footer__shop--wb {
-  border-color: rgba(203, 17, 171, 0.28);
-  color: #CB11AB;
+  border-color: rgba(227, 19, 191, 0.28);
+  color: #E313BF;
 }
 .eo-footer__shop--wb:hover {
-  background: rgba(203, 17, 171, 0.07);
-  border-color: rgba(203, 17, 171, 0.5);
+  background: rgba(227, 19, 191, 0.07);
+  border-color: rgba(227, 19, 191, 0.5);
   transform: translateY(-1px);
 }
 .eo-footer__shop-arrow {
