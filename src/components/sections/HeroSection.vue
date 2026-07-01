@@ -88,7 +88,7 @@ function scrollTo(id) {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.42) 50%, rgba(246, 248, 251, 0.85)),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.40) 50%, rgba(250, 248, 242, 0.85)),
     radial-gradient(ellipse at 50% 40%, rgba(255, 255, 255, 0.25), transparent 60%);
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);

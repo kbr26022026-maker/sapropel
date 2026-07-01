@@ -35,7 +35,7 @@
           </span>
           <div>
             <span class="eo-contact__label">Офис</span>
-            <p class="eo-contact__address">630008, Россия, Новосибирская обл., г. Новосибирск,<br>ул. Лескова, дом 15</p>
+            <p class="eo-contact__address">630008, Россия, Новосибирская обл., г. Новосибирск,<br>ул. Лескова, д. 15</p>
           </div>
         </div>
 
