@@ -27,6 +27,16 @@
   --eo-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
   --eo-shadow-accent: 0 10px 30px rgba(16, 185, 129, 0.22);
 
+  /* Солидная «печать» иконки — тёмно-зелёный шильд со светлым значком.
+     Единый источник стиля для всех секций (применение, преимущества,
+     контакты, hero, статистика), чтобы иконки читались серьёзно, а не
+     «мультяшно». */
+  --eo-badge-bg: linear-gradient(150deg, #0c6e46 0%, #063b23 100%);
+  --eo-badge-ring: rgba(255, 255, 255, 0.16);
+  --eo-badge-ico: rgba(255, 255, 255, 0.95);
+  --eo-badge-shadow: 0 10px 24px rgba(3, 42, 25, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  --eo-badge-shadow-hover: 0 14px 30px rgba(3, 42, 25, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+
   --eo-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --eo-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --eo-font-heading: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;

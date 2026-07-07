@@ -11,26 +11,43 @@
         <router-link to="/privacy-policy" class="eo-footer__link">Политика конфиденциальности</router-link>
       </div>
       <div class="eo-footer__actions">
-        <a
-          href="https://www.ozon.ru/seller/eko-organika54/?__rr=2&abt_att=1&from=share&origin_referer=ecoorganica54.ru"
-          class="eo-footer__shop eo-footer__shop--ozon"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Открыть магазин Эко Органика на Ozon"
-        >
-          <img class="eo-footer__shop-logo" src="/ozon-logo.svg" alt="Ozon" width="73" height="16" />
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="eo-footer__shop-arrow"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </a>
-        <a
-          href="https://www.wildberries.ru/seller/250132883"
-          class="eo-footer__shop eo-footer__shop--wb"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Открыть магазин Эко Органика на Wildberries"
-        >
-          <img class="eo-footer__shop-logo" src="/wildberries-logo.svg" alt="Wildberries" width="107" height="16" />
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="eo-footer__shop-arrow"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </a>
+        <span class="eo-footer__shops-label">Мы на маркетплейсах</span>
+        <div class="eo-footer__shops">
+          <a
+            href="https://www.ozon.ru/seller/eko-organika54/?__rr=2&abt_att=1&from=share&origin_referer=ecoorganica54.ru"
+            class="eo-footer__shop"
+            style="--brand:#005BFF;--brand-glow:rgba(0,91,255,.4)"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Открыть магазин Эко Органика на Ozon"
+          >
+            <span class="eo-footer__shop-tile">
+              <img src="/ozon-icon.png" alt="" width="44" height="44" loading="lazy" />
+            </span>
+            <span class="eo-footer__shop-text">
+              <span class="eo-footer__shop-name">Ozon</span>
+              <span class="eo-footer__shop-sub">Открыть магазин</span>
+            </span>
+            <svg class="eo-footer__shop-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <a
+            href="https://www.wildberries.ru/seller/250132883"
+            class="eo-footer__shop"
+            style="--brand:#CB11AB;--brand-glow:rgba(203,17,171,.4)"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Открыть магазин Эко Органика на Wildberries"
+          >
+            <span class="eo-footer__shop-tile">
+              <img src="/wildberries-icon.png" alt="" width="44" height="44" loading="lazy" />
+            </span>
+            <span class="eo-footer__shop-text">
+              <span class="eo-footer__shop-name">Wildberries</span>
+              <span class="eo-footer__shop-sub">Открыть магазин</span>
+            </span>
+            <svg class="eo-footer__shop-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </footer>
@@ -100,64 +117,88 @@ const year = new Date().getFullYear()
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
 }
 .eo-footer__shops-label {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   color: var(--eo-text-dim);
 }
 .eo-footer__shops {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: stretch;
   gap: 10px;
-  justify-content: center;
 }
 .eo-footer__shop {
-  display: inline-flex;
+  --brand: #005bff;
+  display: flex;
   align-items: center;
-  gap: 7px;
-  padding: 7px 14px;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
+  gap: 12px;
+  padding: 9px 16px 9px 9px;
+  border: 1px solid var(--eo-border);
+  border-radius: 16px;
+  background: var(--eo-surface-2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   text-decoration: none;
-  letter-spacing: 0.01em;
-  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+  transition: transform 0.28s var(--eo-ease), border-color 0.28s var(--eo-ease),
+    box-shadow 0.28s var(--eo-ease), background 0.28s var(--eo-ease);
 }
-.eo-footer__shop-logo {
+.eo-footer__shop:hover {
+  transform: translateY(-2px);
+  border-color: var(--brand);
+  background: var(--eo-white);
+  box-shadow: 0 12px 28px -10px var(--brand-glow);
+}
+.eo-footer__shop-tile {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 14px -4px var(--brand-glow);
+  transition: transform 0.28s var(--eo-ease);
+}
+.eo-footer__shop:hover .eo-footer__shop-tile {
+  transform: scale(1.06);
+}
+.eo-footer__shop-tile img {
   display: block;
-  height: 16px;
-  width: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-.eo-footer__shop--ozon {
-  border-color: rgba(0, 91, 255, 0.28);
-  color: #005BFF;
+.eo-footer__shop-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin-right: auto;
+  text-align: left;
 }
-.eo-footer__shop--ozon:hover {
-  background: rgba(0, 91, 255, 0.07);
-  border-color: rgba(0, 91, 255, 0.5);
-  transform: translateY(-1px);
+.eo-footer__shop-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--eo-text);
+  letter-spacing: -0.01em;
 }
-.eo-footer__shop--wb {
-  border-color: rgba(227, 19, 191, 0.28);
-  color: #E313BF;
-}
-.eo-footer__shop--wb:hover {
-  background: rgba(227, 19, 191, 0.07);
-  border-color: rgba(227, 19, 191, 0.5);
-  transform: translateY(-1px);
+.eo-footer__shop-sub {
+  font-size: 12px;
+  color: var(--eo-text-dim);
 }
 .eo-footer__shop-arrow {
-  opacity: 0.6;
-  transition: opacity 0.2s, transform 0.2s;
+  flex: none;
+  color: var(--eo-text-dim);
+  opacity: 0.5;
+  transition: transform 0.28s var(--eo-ease), opacity 0.28s var(--eo-ease),
+    color 0.28s var(--eo-ease);
 }
 .eo-footer__shop:hover .eo-footer__shop-arrow {
+  color: var(--brand);
   opacity: 1;
-  transform: translate(1px, -1px);
+  transform: translate(2px, -2px);
 }
 .eo-footer__link {
   font-size: 14px;
@@ -168,6 +209,11 @@ const year = new Date().getFullYear()
 .eo-footer__link:hover { color: var(--eo-accent-hover); }
 @media (min-width: 641px) {
   .eo-footer__actions { align-items: flex-end; }
+  .eo-footer__shops {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
 }
 @media (max-width: 640px) {
   .eo-footer { padding: 32px 0 28px; }

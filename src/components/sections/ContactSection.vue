@@ -243,9 +243,11 @@ async function submitForm() {
 .eo-contact__icon {
   flex-shrink: 0;
   width: 56px; height: 56px;
-  border-radius: 18px;
-  background: var(--eo-accent-soft);
-  color: var(--eo-accent-deep);
+  border-radius: 16px;
+  background: var(--eo-badge-bg);
+  border: 1px solid var(--eo-badge-ring);
+  color: var(--eo-badge-ico);
+  box-shadow: var(--eo-badge-shadow);
   display: inline-flex;
   align-items: center;
   justify-content: center;

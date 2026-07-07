@@ -188,8 +188,10 @@ function scrollTo(id) {
 .eo-hero__icon {
   width: 48px; height: 48px;
   border-radius: 14px;
-  background: var(--eo-accent-soft);
-  color: var(--eo-accent-deep);
+  background: var(--eo-badge-bg);
+  border: 1px solid var(--eo-badge-ring);
+  color: var(--eo-badge-ico);
+  box-shadow: var(--eo-badge-shadow);
   display: flex;
   align-items: center;
   justify-content: center;

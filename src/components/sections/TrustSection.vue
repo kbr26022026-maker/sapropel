@@ -157,8 +157,10 @@ onUnmounted(() => {
   width: 52px;
   height: 52px;
   border-radius: 14px;
-  background: var(--eo-accent-soft);
-  color: var(--eo-accent-deep);
+  background: var(--eo-badge-bg);
+  border: 1px solid var(--eo-badge-ring);
+  color: var(--eo-badge-ico);
+  box-shadow: var(--eo-badge-shadow);
   margin: 0 auto 16px;
 }
 .eo-trust__num {

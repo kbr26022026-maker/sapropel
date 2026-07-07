@@ -5,6 +5,7 @@
     <div class="eo-bg__orb eo-bg__orb--2"></div>
     <div class="eo-bg__orb eo-bg__orb--3"></div>
     <div class="eo-bg__orb eo-bg__orb--4"></div>
+    <div class="eo-bg__field"></div>
     <div class="eo-bg__grain"></div>
   </div>
 </template>
@@ -76,6 +77,24 @@
   opacity: 0.5;
 }
 
+/*
+ * Тематическое «поле»: очень тонкий органический мотив из колосьев и трав,
+ * который держится за фисташковым тоном на ПРОТЯЖЕНИИ ВСЕГО скролла (слой
+ * фиксированный, поэтому единый фон остаётся всё время — и на десктопе, и на
+ * мобильном). Чистый SVG, крайне низкая непрозрачность — «за тоном что-то
+ * есть», но текст поверх фрост-стекла остаётся полностью читаемым.
+ */
+.eo-bg__field {
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  background-repeat: repeat;
+  background-size: 260px 260px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'><g fill='none' stroke='%23047857' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M58 252 C56 210 61 185 58 150 M58 150 l0 -9 M120 252 C130 205 114 178 128 150 M202 234 C200 200 205 175 202 142 M202 142 l0 -9 M30 190 C35 160 27 145 34 118 M162 128 C158 100 166 86 159 62 M232 130 C236 108 229 96 234 76 M92 128 C97 102 88 88 95 66'/><path d='M58 168 l-7 -5 M58 168 l7 -5 M58 160 l-7 -5 M58 160 l7 -5 M58 152 l-6 -5 M58 152 l6 -5 M202 160 l-7 -5 M202 160 l7 -5 M202 152 l-7 -5 M202 152 l7 -5 M202 144 l-6 -5 M202 144 l6 -5'/></g></svg>");
+}
+
 /* Тонкое «бумажное» зерно — даёт ту самую фактуру вместо плоской белизны */
 .eo-bg__grain {
   position: absolute;
@@ -107,5 +126,6 @@
   .eo-bg__orb { filter: blur(70px); }
   .eo-bg__orb--1, .eo-bg__orb--2,
   .eo-bg__orb--3, .eo-bg__orb--4 { width: 56vw; height: 56vw; opacity: 0.42; }
+  .eo-bg__field { opacity: 0.05; background-size: 220px 220px; }
 }
 </style>

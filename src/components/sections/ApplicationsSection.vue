@@ -115,26 +115,26 @@ const apps = [
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(236, 253, 245, 0.85));
-  border: 1px solid rgba(0, 66, 37, 0.22);
-  border-radius: 20px;
-  box-shadow: 0 4px 14px rgba(0, 66, 37, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  background: var(--eo-badge-bg);
+  border: 1px solid var(--eo-badge-ring);
+  border-radius: 16px;
+  box-shadow: var(--eo-badge-shadow);
+  transition: box-shadow 0.3s, transform 0.3s;
   will-change: transform;
   overflow: hidden;
 }
 .eo-app:hover .eo-app__icon-core {
-  border-color: rgba(4, 120, 87, 0.45);
-  box-shadow: 0 8px 22px rgba(0, 66, 37, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  transform: scale(1.08);
+  box-shadow: var(--eo-badge-shadow-hover);
+  transform: scale(1.06);
 }
 :deep(.eo-app__icon-core > svg) {
-  width: 26px; height: 26px;
-  color: var(--eo-accent-deep);
+  width: 28px; height: 28px;
+  color: var(--eo-badge-ico);
+  stroke-width: 2;
   flex: 0 0 auto;
-  transition: color 0.3s, transform 0.3s;
+  transition: transform 0.3s;
 }
-.eo-app:hover :deep(.eo-app__icon-core > svg) { color: var(--eo-accent-hover); transform: scale(1.08); }
+.eo-app:hover :deep(.eo-app__icon-core > svg) { transform: scale(1.08); }
 .eo-app h3 {
   position: relative;
   z-index: 1;

@@ -136,22 +136,21 @@ const features = [
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--eo-accent-deep);
-  border-radius: 20px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(236, 253, 245, 0.8));
-  border: 1px solid rgba(4, 120, 87, 0.20);
-  box-shadow: 0 4px 16px rgba(4, 120, 87, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  transition: color 0.3s, transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  color: var(--eo-badge-ico);
+  border-radius: 16px;
+  background: var(--eo-badge-bg);
+  border: 1px solid var(--eo-badge-ring);
+  box-shadow: var(--eo-badge-shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 :deep(.eo-feature__icon svg) {
   position: relative;
   z-index: 1;
+  stroke-width: 1.75;
 }
 .eo-feature:hover .eo-feature__icon {
-  color: var(--eo-accent-hover);
   transform: scale(1.08);
-  box-shadow: 0 8px 24px rgba(4, 120, 87, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  border-color: rgba(4, 120, 87, 0.40);
+  box-shadow: var(--eo-badge-shadow-hover);
 }
 .eo-feature h3 {
   color: var(--eo-accent-deep);
